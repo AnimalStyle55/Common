@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LD.Common.Serialization</name>
+    </assembly>
+    <members>
+        <member name="T:LD.Common.Serialization.JsonUtil">
+            <summary>
+            Utility methods for serialization and deserialization using Json.Net
+            </summary>
+        </member>
+        <member name="M:LD.Common.Serialization.JsonUtil.#cctor">
+            <summary>
+            Configures the supplied serializer settings
+            </summary>
+        </member>
+        <member name="M:LD.Common.Serialization.JsonUtil.ApplyDefaultSettings(Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Apply our default settings to the settings object
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:LD.Common.Serialization.JsonUtil.SerializeObject(System.Object,System.Action{Newtonsoft.Json.JsonSerializerSettings})">
+            <summary>
+            Serializes an object to json string using standard serialization settings
+            </summary>
+            <param name="obj"></param>
+            <param name="modSettings">customize the json settings with this action, null for no customization</param>
+            <returns>json string</returns>
+        </member>
+        <member name="M:LD.Common.Serialization.JsonUtil.DeserializeObject``1(System.String,System.Action{Newtonsoft.Json.JsonSerializerSettings})">
+            <summary>
+            Deserializes json string to object using standard serialization settings
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="s"></param>
+            <param name="modSettings">customize the json settings with this action, null for no customization</param>
+            <returns>object of type T</returns>
+        </member>
+        <member name="M:LD.Common.Serialization.JsonUtil.DeepClone``1(``0)">
+            <summary>
+            Uses json serialize/deserialize to create a deep clone of an object
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj">object to clone</param>
+            <returns>cloned object of type T</returns>
+        </member>
+        <member name="T:LD.Common.Serialization.Serializers.JsonNetUnderscorePropertyNamesContractResolver">
+             <summary>
+             Use in Json Deserialization if the json multi-word keys are delimited by underscores
+            
+             "api_key" => string ApiKey {get;set;}
+            
+             Usage:
+            
+                 return JsonUtil.DeserializeObject(
+                     stringValue,
+                     (s) =>
+                     {
+                         s.ContractResolver = new JsonNetUnderscorePropertyNamesContractResolver();
+                     });
+            
+             </summary>
+        </member>
+        <member name="M:LD.Common.Serialization.Serializers.JsonNetUnderscorePropertyNamesContractResolver.ResolvePropertyName(System.String)">
+            <summary>
+            Called by Json.Net to resolve the property name
+            </summary>
+        </member>
+        <member name="T:LD.Common.Serialization.Serializers.RestSharpJsonNetDeserializer">
+             <summary>
+             A Deserializer that allows RestSharp to deserialize json responses using Json.Net
+            
+             Usage:
+            
+                 var restClient = new RestClient();
+                 restClient.AddHandler(ContentTypes.ApplicationJson, new RestSharpJsonNetDeserializer());
+            
+             </summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpJsonNetDeserializer.DateFormat">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpJsonNetDeserializer.Namespace">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpJsonNetDeserializer.RootElement">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="M:LD.Common.Serialization.Serializers.RestSharpJsonNetDeserializer.#ctor(System.Action{Newtonsoft.Json.JsonSerializerSettings})">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Serialization.Serializers.RestSharpJsonNetDeserializer.Deserialize``1(RestSharp.IRestResponse)">
+            <summary>
+            Deserialize a rest response into an object via Json.net
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.Serialization.Serializers.RestSharpJsonNetSerializer">
+             <summary>
+             A Serializer that allows RestSharp to serialize json requests using Json.Net
+            
+             Usage:
+            
+                var request = new RestRequest(resource, method);
+            
+                request.RequestFormat = DataFormat.Json;
+                request.JsonSerializer = new RestSharpJsonNetSerializer();
+            
+             </summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpJsonNetSerializer.ContentType">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpJsonNetSerializer.DateFormat">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpJsonNetSerializer.Namespace">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpJsonNetSerializer.RootElement">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="M:LD.Common.Serialization.Serializers.RestSharpJsonNetSerializer.#ctor(System.Action{Newtonsoft.Json.JsonSerializerSettings})">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Serialization.Serializers.RestSharpJsonNetSerializer.Serialize(System.Object)">
+            <summary>
+            Serialize an object into json format for sending
+            </summary>
+        </member>
+        <member name="T:LD.Common.Serialization.Serializers.RestSharpXmlDeserializer">
+             <summary>
+             A Deserializer that allows RestSharp to deserialize Xml responses using .NET XmlSerializer
+            
+             Usage:
+            
+                 var restClient = new RestClient();
+                 restClient.AddHandler(ContentTypes.TextXml, new RestSharpXmlDeserializer());
+            
+             </summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpXmlDeserializer.DateFormat">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpXmlDeserializer.Namespace">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpXmlDeserializer.RootElement">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="M:LD.Common.Serialization.Serializers.RestSharpXmlDeserializer.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Serialization.Serializers.RestSharpXmlDeserializer.Deserialize``1(RestSharp.IRestResponse)">
+            <summary>
+            Deserialize a rest response to an object via XmlSerializer
+            </summary>
+        </member>
+        <member name="T:LD.Common.Serialization.Serializers.RestSharpXmlSerializer">
+             <summary>
+             A Serializer that allows RestSharp to serialize Xml requests using .NET XmlSerializer
+            
+             Usage:
+            
+                var request = new RestRequest(resource, method);
+            
+                request.RequestFormat = DataFormat.Xml
+                request.JsonSerializer = new RestSharpXmlSerializer();
+            
+             </summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpXmlSerializer.ContentType">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpXmlSerializer.DateFormat">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpXmlSerializer.Namespace">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serialization.Serializers.RestSharpXmlSerializer.RootElement">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="M:LD.Common.Serialization.Serializers.RestSharpXmlSerializer.#ctor(System.Boolean)">
+            <summary>
+            Constructore
+            </summary>
+            <param name="omitNamespaces">true to not output xml namespaces</param>
+        </member>
+        <member name="M:LD.Common.Serialization.Serializers.RestSharpXmlSerializer.Serialize(System.Object)">
+            <summary>
+            Serialize an object to xml for sending
+            </summary>
+        </member>
+        <member name="T:LD.Common.Serialization.XmlUtil">
+            <summary>
+            Utility methods for serialization and deserialization using .NET Xml Serializer
+            </summary>
+        </member>
+        <member name="T:LD.Common.Serialization.XmlUtil.SerializerSettings">
+            <summary>
+            Serializer Settings
+            </summary>
+        </member>
+        <member name="F:LD.Common.Serialization.XmlUtil.SerializerSettings.Default">
+            <summary>
+            Default settings
+            - include namespaces
+            - include xml declaration
+            - indent
+            </summary>
+        </member>
+        <member name="F:LD.Common.Serialization.XmlUtil.SerializerSettings.OmitNamespaces">
+            <summary>Do not output any xml namespaces</summary>
+        </member>
+        <member name="F:LD.Common.Serialization.XmlUtil.SerializerSettings.OmitXmlDeclaration">
+            <summary>Do not output the xml declaration at the top</summary>
+        </member>
+        <member name="F:LD.Common.Serialization.XmlUtil.SerializerSettings.NoIndent">
+            <summary>Do not indent the output</summary>
+        </member>
+        <member name="M:LD.Common.Serialization.XmlUtil.#cctor">
+            <summary>
+            Configures the supplied serializer settings
+            </summary>
+        </member>
+        <member name="M:LD.Common.Serialization.XmlUtil.Serialize(System.Object)">
+            <summary>
+            Serializes an object to xml string
+            </summary>
+            <param name="obj"></param>
+            <returns>xml string</returns>
+        </member>
+        <member name="M:LD.Common.Serialization.XmlUtil.Serialize(System.Object,LD.Common.Serialization.XmlUtil.SerializerSettings)">
+            <summary>
+            Serializes an object to xml string
+            </summary>
+            <param name="obj"></param>
+            <param name="settings">[optional] serializer settings</param>
+            <returns>xml string</returns>
+        </member>
+        <member name="M:LD.Common.Serialization.XmlUtil.Serialize(System.Object,System.IO.Stream,LD.Common.Serialization.XmlUtil.SerializerSettings)">
+            <summary>
+            Serializes an object to a stream
+            </summary>
+            <param name="obj"></param>
+            <param name="stream"></param>
+            <param name="settings">[optional] serializer settings</param>
+        </member>
+        <member name="M:LD.Common.Serialization.XmlUtil.Deserialize``1(System.String)">
+            <summary>
+            Deserializes xml string to object
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="xml"></param>
+            <returns>object of type T</returns>
+        </member>
+        <member name="M:LD.Common.Serialization.XmlUtil.DeserializeFromFile``1(System.String)">
+            <summary>
+            Deserializes contents of an xml file to object
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="fileName"></param>
+            <returns>object of type T</returns>
+        </member>
+        <member name="M:LD.Common.Serialization.XmlUtil.DeserializeFromStream``1(System.IO.Stream)">
+            <summary>
+            Deserializes contents of an xml stream to object
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="stream"></param>
+            <returns>object of type T</returns>
+        </member>
+        <member name="M:LD.Common.Serialization.XmlUtil.Validate(System.String,System.String[])">
+            <summary>
+            Validate an xml file against a set of schemas
+            </summary>
+            <param name="xml"></param>
+            <param name="schemaPaths"></param>
+            <returns>a list of errors, will be empty if successful</returns>
+        </member>
+        <member name="T:LD.Common.Serializion.Serializers.RestSharpStringSerializer">
+             <summary>
+             A Serializer that allows RestSharp to serialize a request body as plain text
+             Note: Defaults to ContentTypes.TextPlain, change .ContentType to use something else
+            
+             Usage:
+            
+                var request = new RestRequest(resource, method);
+            
+                request.JsonSerializer = new RestSharpStringSerializer();
+            
+             </summary>
+        </member>
+        <member name="P:LD.Common.Serializion.Serializers.RestSharpStringSerializer.ContentType">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serializion.Serializers.RestSharpStringSerializer.DateFormat">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serializion.Serializers.RestSharpStringSerializer.Namespace">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="P:LD.Common.Serializion.Serializers.RestSharpStringSerializer.RootElement">
+            <summary>Required by RestSharp</summary>
+        </member>
+        <member name="M:LD.Common.Serializion.Serializers.RestSharpStringSerializer.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Serializion.Serializers.RestSharpStringSerializer.Serialize(System.Object)">
+            <summary>
+            Serialize a string to a string (no translation)
+            </summary>
+        </member>
+    </members>
+</doc>

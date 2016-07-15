@@ -1,0 +1,423 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LD.Common.Queue</name>
+    </assembly>
+    <members>
+        <member name="T:LD.Common.Queue.Extensions.RabbitMQExtensions">
+            <summary>
+            Utility methods for interacting with headers of rabbitmq messages
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Extensions.RabbitMQExtensions.SetHeader``1(RabbitMQ.Client.IBasicProperties,System.String,``0)">
+            <summary>
+            Set a header in message properties
+            </summary>
+            <typeparam name="T">type of the header, recommended string or primitive type</typeparam>
+            <param name="properties">BasicProperties object from rabbit</param>
+            <param name="headerName">name of the header, recommended to prefix with "ld-"</param>
+            <param name="headerValue">value of type T</param>
+        </member>
+        <member name="M:LD.Common.Queue.Extensions.RabbitMQExtensions.GetHeader``1(RabbitMQ.Client.IBasicProperties,System.String)">
+            <summary>
+            Get header value from message properties
+            </summary>
+            <typeparam name="T">type of the header, see SetHeader</typeparam>
+            <param name="properties">BasicProperties object from rabbit</param>
+            <param name="headerName">name of the header, recommended to prefix with "ld-"</param>
+            <returns>header value or default(T)</returns>
+        </member>
+        <member name="M:LD.Common.Queue.Extensions.RabbitMQExtensions.GetHeader``1(RabbitMQ.Client.IBasicProperties,System.String,``0)">
+            <summary>
+            Get header value from message properties
+            </summary>
+            <typeparam name="T">type of the header, see SetHeader</typeparam>
+            <param name="properties">BasicProperties object from rabbit</param>
+            <param name="headerName">name of the header, recommended to prefix with "ld-"</param>
+            <param name="defaultVal">(optional) default value if header isn't found</param>
+            <returns>header value or defaultVal</returns>
+        </member>
+        <member name="M:LD.Common.Queue.Extensions.RabbitMQExtensions.TryGetHeader``1(RabbitMQ.Client.IBasicProperties,System.String,``0@)">
+            <summary>
+            Get header value from message properties
+            </summary>
+            <typeparam name="T">type of the header, see SetHeader</typeparam>
+            <param name="properties">BasicProperties object from rabbit</param>
+            <param name="headerName">name of the header, recommended to prefix with "ld-"</param>
+            <param name="value">(out) receives the value</param>
+            <returns>true if header was found, value will be set, false otherwise and value is default(T)</returns>
+        </member>
+        <member name="M:LD.Common.Queue.Extensions.RabbitMQExtensions.TryGetHeader``1(RabbitMQ.Client.IBasicProperties,System.String,``0@,System.Func{System.Object,``0})">
+            <summary>
+            Get header value from message properties
+            </summary>
+            <typeparam name="T">type of the header, see SetHeader</typeparam>
+            <param name="properties">BasicProperties object from rabbit</param>
+            <param name="headerName">name of the header, recommended to prefix with "ld-"</param>
+            <param name="value">(out) receives the value</param>
+            <param name="converter">a function for doing a custom conversion of the header value, null is identity function</param>
+            <returns>true if header was found, value will be set, false otherwise and value is default(T)</returns>
+        </member>
+        <member name="T:LD.Common.Queue.Publisher.IRabbitMQPublisher">
+            <summary>
+            Interface for a RabbitMQ Publisher
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.IRabbitMQPublisher.Publish(System.String,System.String)">
+            <summary>
+            Publish a string message
+            </summary>
+            <param name="message">will be encoded as UTF-8</param>
+            <param name="messageId">an optional (but recommended) message id</param>
+            <exception cref="T:System.IO.IOException">thrown if publish is not confirmed (if confirms enabled)</exception>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.IRabbitMQPublisher.Publish(System.Byte[],System.String)">
+            <summary>
+            Publish a byte[] message
+            </summary>
+            <param name="message"></param>
+            <param name="messageId">an optional (but recommended) message id, also used for routing messages if direct or topic exchanges are used</param>
+            <exception cref="T:System.IO.IOException">thrown if publish is not confirmed (if confirms enabled)</exception>
+        </member>
+        <member name="T:LD.Common.Queue.Publisher.RabbitMQPublisher">
+            <summary>
+            A wrapped publisher that can publish strings and bytes to RabbitMQ
+            </summary>
+        </member>
+        <member name="T:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder">
+             <summary>
+             Builder for a RabbitMQ publisher
+            
+             Use builder pattern
+             <code>
+                 new RabbitMQPublisherBuilder("queue", 1234)
+                             .WithCredentials("a", "b")
+                             .WithExchange("x")
+                             .Build()
+             </code>
+             </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.#ctor(System.String,System.Int32)">
+            <summary>
+            Construct a new builder
+            </summary>
+            <param name="host">hostname for rabbit server</param>
+            <param name="port">port for rabbit server</param>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.#ctor(LD.Common.Queue.Publisher.RabbitMQPublisherSettings)">
+            <summary>
+            Construct from settings
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.WithCredentials(System.String,System.String)">
+            <summary>
+            Set credentials for rabbit server, required
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.WithDirectQueue(System.String)">
+            <summary>
+            Publish Directly to a Queue without an Exchange, (this or WithExchange() is required)
+            </summary>
+            <remarks>
+            RabbitMQ prefers that all publishing go to Exchanges, and queues get bound to the exchange.
+            However, it is possible to publish directly to a Queue.  This should only be used for private queues (i.e. not between components)
+            </remarks>
+            <param name="queueName"></param>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.WithExchange(System.String)">
+            <summary>
+            Publish to an Exchange (this or WithDirectQueue() is required)
+            </summary>
+            <param name="exchangeName"></param>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.WithoutPersistence">
+            <summary>
+            Disable persistence of the published messages (in memory only)
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.WithPersistence">
+            <summary>
+            Enable persistence of the published messages (messages will be written to disk)
+            This is on by default
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.TestMode(System.Boolean)">
+            <summary>
+            Enable test mode
+            This if off by default
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.WithoutConfirms">
+            <summary>
+            Disable waiting for confirms
+            Confirms are enabled by default
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.WithConfirmsTimeout(System.TimeSpan)">
+            <summary>
+            Set the timeout for waiting for confirms
+            Defaults to 15 seconds
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Publisher.RabbitMQPublisherBuilder.Build">
+            <summary>
+            Build the publisher
+            </summary>
+            <returns>a publisher ready to publish</returns>
+        </member>
+        <member name="T:LD.Common.Queue.Publisher.RabbitMQPublisherSettings">
+            <summary>
+            Settings specific for subscribers
+            </summary>
+        </member>
+        <member name="P:LD.Common.Queue.Publisher.RabbitMQPublisherSettings.DisableConfirms">
+            <summary>disable waiting for confirms</summary>
+        </member>
+        <member name="P:LD.Common.Queue.Publisher.RabbitMQPublisherSettings.ConfirmsTimeout">
+            <summary>how long to wait for confirms</summary>
+        </member>
+        <member name="T:LD.Common.Queue.Publisher.TestRabbitMQPublisher">
+            <summary>
+            Test rabbitmq publisher that only logs
+            </summary>
+        </member>
+        <member name="T:LD.Common.Queue.Subscriber.CallbackResponse">
+            <summary>
+            Response received by callback to indicate what rabbit should do with the message
+            </summary>
+        </member>
+        <member name="F:LD.Common.Queue.Subscriber.CallbackResponse.Acknowledge">
+            <summary>Processing Succeeded</summary>
+        </member>
+        <member name="F:LD.Common.Queue.Subscriber.CallbackResponse.ReQueue">
+            <summary>Processing Failed, Requeue and try again</summary>
+        </member>
+        <member name="F:LD.Common.Queue.Subscriber.CallbackResponse.Dead">
+            <summary>Message was not processed, but do not try again, possibly send to a DLQ</summary>
+        </member>
+        <member name="T:LD.Common.Queue.Subscriber.ExtendedCallbackResponse">
+            <summary>
+            Response class returned by extended callback
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.ExtendedCallbackResponse.#ctor(LD.Common.Queue.Subscriber.CallbackResponse)">
+            <summary>
+            Construct with a CallbackResponse
+            </summary>
+        </member>
+        <member name="P:LD.Common.Queue.Subscriber.ExtendedCallbackResponse.Response">
+            <summary>
+            The response which controls the fate of the message
+            </summary>
+        </member>
+        <member name="P:LD.Common.Queue.Subscriber.ExtendedCallbackResponse.Republish">
+            <summary>
+            If Response is Acknowledge, true here will cause the message to be republished as a new message
+            The properties and body will come from the message parameter to the callback
+            NOTE: The republished message will not have the original routing key
+            </summary>
+        </member>
+        <member name="P:LD.Common.Queue.Subscriber.ExtendedCallbackResponse.PublishToExchange">
+            <summary>
+            If Response is Acknowledge, a value here will cause the message to be republished as a new message to the named exchange
+            The routing key, properties, and body will come from the message parameter to the callback
+            </summary>
+        </member>
+        <member name="P:LD.Common.Queue.Subscriber.ExtendedCallbackResponse.PublishToQueue">
+            <summary>
+            If Response is Acknowledge, a value here will cause the message to be republished as a new message to the named queue
+            The properties and body will come from the message parameter to the callback
+            NOTE: The republished message will not have the original routing key
+            </summary>
+        </member>
+        <member name="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriber">
+            <summary>
+            Interface for a RabbitMQ Subscriber
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriber.Stop(System.Nullable{System.TimeSpan})">
+            <summary>
+            Stop the receivers from processing.  Waits for active receivers to end (up to optional timeout)
+            NOTE: This does not actually disconnect anything, it is expected that .Dispose() would be called after this completes
+            </summary>
+            <param name="timeout">
+            (optional) timeout for waiting for active receivers to stop.
+            If waiting times out, those active messages will be requeued.
+            If null, will wait up to forever
+            </param>
+        </member>
+        <member name="T:LD.Common.Queue.Subscriber.RabbitMQSubscriberSettings">
+            <summary>
+            Settings specific for subscribers
+            </summary>
+        </member>
+        <member name="P:LD.Common.Queue.Subscriber.RabbitMQSubscriberSettings.QueueName">
+            <summary>Queue Name to subscribe</summary>
+        </member>
+        <member name="P:LD.Common.Queue.Subscriber.RabbitMQSubscriberSettings.Connections">
+            <summary>How many connections for subscription</summary>
+        </member>
+        <member name="P:LD.Common.Queue.Subscriber.RabbitMQSubscriberSettings.ChannelsPerConnection">
+            <summary>How many channels per connection</summary>
+        </member>
+        <member name="P:LD.Common.Queue.Subscriber.RabbitMQSubscriberSettings.RepublishConfirmsTimeout">
+            <summary>How long to wait for confirmation of a republish (also blocks acknowledgement)</summary>
+        </member>
+        <member name="P:LD.Common.Queue.Subscriber.RabbitMQSubscriberSettings.DisableRepublishConfirms">
+            <summary>Disable confirms on republish (dangerous, acks might succeed while repub fails)</summary>
+        </member>
+        <member name="T:LD.Common.Queue.Subscriber.RabbitMQSubscriber">
+            <summary>
+            Subscriber that will listen to a queue
+            </summary>
+        </member>
+        <member name="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder">
+            <summary>
+            Interface for builder
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder.WithCredentials(System.String,System.String)">
+            <summary>
+            Set credentials for rabbit server, required
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder.WithQueue(System.String)">
+            <summary>
+            Subscribe to a Queue
+            </summary>
+            <param name="queueName"></param>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder.WithAutoAck">
+            <summary>
+            Enable auto acknowledgement, default requires manual acknowledgement of messages
+            If this is enabled, once messages are delivered they cannot be redelivered on failure
+            Only do this if you don't care about lost messages
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder.DisableRepublishConfirms">
+            <summary>
+            Disables confirms when republishing messages.
+            WARNING: If this is disabled, then we don't confirm whether the publish succeeded.
+                     This can lead to conditions where a message is ACKed, but the republish fails.
+                     The only reason to disable is if you don't care about republishes
+            </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder.WithConnections(System.Int32)">
+            <summary>
+            Set how many connections to the rabbit server you will make (== tcp connections)
+            </summary>
+            <param name="numConns">defaults to 1</param>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder.WithChannelsPerConnection(System.Int32)">
+            <summary>
+            Set how many channels to enable per connection.
+            Each channel will get messages in its own "thread", but the channels are fed by a single receiver on the connection
+            </summary>
+            <param name="numChannels">defaults to 1</param>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder.WithRepublishConfirmTimeout(System.TimeSpan)">
+            <summary>
+            Set the timeout for waiting for a republish confirmation.
+            Note: This blocks acknowledgement, and if times out, it will fail and requeue
+            </summary>
+            <param name="timeout">defaults to 15 seconds</param>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder.WithSimpleCallback(System.Func{System.Byte[],LD.Common.Queue.Subscriber.CallbackResponse})">
+            <summary>
+            Set the callback to receive messages, this or WithExtendedCallback required
+            This callback only provides the message body
+            </summary>
+            <param name="callback">function that will receive the message, and return response</param>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder.WithExtendedCallback(System.Func{RabbitMQ.Client.Events.BasicDeliverEventArgs,LD.Common.Queue.Subscriber.ExtendedCallbackResponse})">
+            <summary>
+            Set the callback to receive messages, this or WithSimpleCallback required
+            This callback provides the entire message object and allows for republishing
+            </summary>
+            <param name="callback">function that will receive the message, and determine the next step.  Republishing is supported, the
+            BasicDeliverEventArgs is mutable for republishing.
+            </param>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder.Build">
+            <summary>
+            Build the subscriber
+            </summary>
+            <returns>a subscriber that is subcribed</returns>
+        </member>
+        <member name="T:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder">
+             <summary>
+             Builder for a RabbitMQ subscriber
+            
+             Use builder pattern
+             <code>
+                 new RabbitMQSubscriberBuilder("queue", 1234)
+                             .WithCredentials("a", "b")
+                             .WithQueue("x")
+                             .Build()
+             </code>
+             </summary>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.#ctor(System.String,System.Int32)">
+            <summary>
+            Construct a new subscriber
+            </summary>
+            <param name="host">hostname for rabbit server</param>
+            <param name="port">port for rabbit server</param>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.#ctor(LD.Common.Queue.Subscriber.RabbitMQSubscriberSettings)">
+            <summary>
+            Construct from settings
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.WithCredentials(System.String,System.String)">
+            <see cref="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder"/>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.WithQueue(System.String)">
+            <see cref="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder"/>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.WithAutoAck">
+            <see cref="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder"/>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.WithConnections(System.Int32)">
+            <see cref="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder"/>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.WithChannelsPerConnection(System.Int32)">
+            <see cref="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder"/>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.WithRepublishConfirmTimeout(System.TimeSpan)">
+            <see cref="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder"/>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.WithSimpleCallback(System.Func{System.Byte[],LD.Common.Queue.Subscriber.CallbackResponse})">
+            <see cref="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder"/>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.WithExtendedCallback(System.Func{RabbitMQ.Client.Events.BasicDeliverEventArgs,LD.Common.Queue.Subscriber.ExtendedCallbackResponse})">
+            <see cref="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder"/>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.DisableRepublishConfirms">
+            <see cref="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder"/>
+        </member>
+        <member name="M:LD.Common.Queue.Subscriber.RabbitMQSubscriberBuilder.Build">
+            <see cref="T:LD.Common.Queue.Subscriber.IRabbitMQSubscriberBuilder"/>
+        </member>
+        <member name="T:LD.Common.Queue.RabbitMQSettings">
+            <summary>
+            Base rabbit mq settings
+            </summary>
+        </member>
+        <member name="P:LD.Common.Queue.RabbitMQSettings.Host">
+            <summary>Hostname of RabbitMQ Server</summary>
+        </member>
+        <member name="P:LD.Common.Queue.RabbitMQSettings.Port">
+            <summary>Port for RabbitMQ Server</summary>
+        </member>
+        <member name="P:LD.Common.Queue.RabbitMQSettings.Username">
+            <summary>Rabbit username</summary>
+        </member>
+        <member name="P:LD.Common.Queue.RabbitMQSettings.Password">
+            <summary>Rabbit password</summary>
+        </member>
+    </members>
+</doc>

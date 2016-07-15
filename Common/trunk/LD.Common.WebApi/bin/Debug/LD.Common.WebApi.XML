@@ -1,0 +1,736 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LD.Common.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:LD.Common.WebApi.Client.ApiClient">
+            <summary>
+            Base class for ApiClients using RestSharp
+            </summary>
+        </member>
+        <member name="F:LD.Common.WebApi.Client.ApiClient._restClient">
+            <summary>
+            Internal RestSharp client
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Client.ApiClient.#ctor(System.String,System.Nullable{System.TimeSpan})">
+            <summary>
+            Construct from url and timeout
+            </summary>
+            <param name="serverUrl">protocal and host:port only</param>
+            <param name="timeout">(optional) timeout, if not specified will use restsharp default</param>
+        </member>
+        <member name="M:LD.Common.WebApi.Client.ApiClient.MakeRequest(System.String,RestSharp.Method)">
+            <summary>
+            Construct a JSON request
+            </summary>
+            <param name="resource"></param>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.WebApi.Client.ApiClient.Execute(RestSharp.IRestRequest,System.Net.HttpStatusCode[])">
+            <summary>
+            Execute a Request
+            </summary>
+            <param name="request"></param>
+            <param name="expectedStatusCodes"></param>
+        </member>
+        <member name="M:LD.Common.WebApi.Client.ApiClient.Execute``1(RestSharp.IRestRequest,System.Net.HttpStatusCode[])">
+            <summary>
+            Execute a Request with an expected object return type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="request"></param>
+            <param name="expectedStatusCodes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.WebApi.Client.ApiClient.ErrorResponse">
+            <summary>
+            Response object returned if error detected
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Client.ApiClient.ErrorResponse.Message">
+            <summary>
+            response data
+            </summary>
+        </member>
+        <member name="T:LD.Common.WebApi.Client.ApiClient.RestException">
+            <summary>
+            Exception if rest call returned an HTTP error code
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Client.ApiClient.RestException.StatusCode">
+            <summary>
+            HTTP Status Code returned from call
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Client.ApiClient.RestException.ResponseContent">
+            <summary>
+            Content of the response
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Client.ApiClient.RestException.#ctor(System.Net.HttpStatusCode,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="statusCode"></param>
+            <param name="message"></param>
+            <param name="responseContent"></param>
+        </member>
+        <member name="T:LD.Common.WebApi.Client.LoanDepotWebClient">
+            <summary>
+            Extends <see cref="T:System.Net.WebClient"/> to allow control over the handling of redirect responses.
+            
+            Example usage:
+              
+            <code>
+                using (var client = new LoanDepotWebClient(false))
+                {
+                    var result = client.DownloadString("https://goo.gl/SeILxU");
+            
+                    if(client.StatusCode == HttpStatusCode.MovedPermanently)
+                        string location = client.Location;  // https://en.wikipedia.org/wiki/URL_shortening
+                }
+            </code>
+                                                         
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Client.LoanDepotWebClient.#ctor">
+            <summary>
+            Creates a new isntance of <see cref="T:LD.Common.WebApi.Client.LoanDepotWebClient"/> with <see cref="P:LD.Common.WebApi.Client.LoanDepotWebClient.AutoRedirect"/> = true.
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Client.LoanDepotWebClient.#ctor(System.Boolean)">
+            <summary>
+            Creates a new isntance of <see cref="T:LD.Common.WebApi.Client.LoanDepotWebClient"/>.
+            </summary>
+            <param name="autoRedirect">
+            Specifies weather or not to follow redirects:
+                True - follow redirects (also the default behavior of <see cref="T:System.Net.WebClient"/>)
+                False - do not follow redirects and simply return the response verbatim.
+            </param>
+        </member>
+        <member name="P:LD.Common.WebApi.Client.LoanDepotWebClient.AutoRedirect">
+            <summary>
+            Get or Set weather or not to follow redirects:
+                True - follow redirects (also the default behavior of <see cref="T:System.Net.WebClient"/>)
+                False - do not follow redirects and simply return the response verbatim.
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Client.LoanDepotWebClient.Timeout">
+            <summary>
+            Service Call Timeout in Milliseconds, defaults to 100 seconds
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Client.LoanDepotWebClient.Location">
+            <summary>
+            Gets the value of the Location header from the response.  When the response is a redirect,
+            this will typically contain the target URL of the redirect.
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Client.LoanDepotWebClient.StatusCode">
+            <summary>
+            Get the <see cref="T:System.Net.HttpStatusCode"/> of the response.  For example, if the response is 302 redirect it
+            will be <see cref="F:System.Net.HttpStatusCode.Found"/>.
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Client.LoanDepotWebClient.GetWebRequest(System.Uri)">
+            <summary>
+            Overriding the GetWebRequest to set the auto-redirect flag
+            </summary>
+        </member>
+        <member name="T:LD.Common.WebApi.Configuration.CorsUtil">
+            <summary>
+            Utilities for enabling CORS in web api projects
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Configuration.CorsUtil.ParseOrigins(System.String)">
+            <summary>
+            Eliminates trailing slashes from a comma separated list of URLs
+            </summary>
+            <remarks>
+            NOTE: This will distinct and sort as well
+            </remarks>
+            <param name="allowedOrigins">A comma separated list of URLs</param>
+            <returns>a string suitable for passing to EnableCorsAttribute()</returns>
+        </member>
+        <member name="T:LD.Common.WebApi.Dependencies.UnityResolver">
+            <summary>
+            A dependency resolver for injecting dependencies into WebApi2 controllers
+            Add this to WebApiConfig to enable it
+            <code>config.DependencyResolver = new UnityResolver(container);</code>
+            
+            Recommendation is to inject the container into controllers and resolve 
+            other dependencies via that container
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Dependencies.UnityResolver.#ctor(Microsoft.Practices.Unity.IUnityContainer)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="container"></param>
+        </member>
+        <member name="M:LD.Common.WebApi.Dependencies.UnityResolver.GetService(System.Type)">
+            <summary>
+            Get Service
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.WebApi.Dependencies.UnityResolver.GetServices(System.Type)">
+            <summary>
+            Get Services
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.WebApi.Dependencies.UnityResolver.BeginScope">
+            <summary>
+            Begin Scope
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.WebApi.Dependencies.UnityResolver.Dispose">
+            <summary>
+            Dispose Container
+            </summary>
+        </member>
+        <member name="T:LD.Common.WebApi.Extensions.HttpRequestMessageExtensions">
+            <summary>
+            Extensions for HttpRequestMessage
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Extensions.HttpRequestMessageExtensions.GetClientIpAddress(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Get the Client IP Address (best effort) from a request
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.WebApi.Filters.ValidateBodyParameterAttribute">
+            <summary>
+            Use this attribute to ensure the parameter derived from the body of a request (if any) is non-null.
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Filters.ValidateBodyParameterAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            Handle Action Executing
+            </summary>
+            <param name="actionContext"></param>
+        </member>
+        <member name="T:LD.Common.WebApi.Filters.ValidateModelFilterAttribute">
+            <summary>
+            Use this attribute to return model validation errors in the form of an Api response
+            object, mapping properties to validation error descriptions.
+            <code>[ValidateModelFilter]</code>
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Filters.ValidateModelFilterAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            Handle Action Executing
+            </summary>
+            <param name="actionContext"></param>
+        </member>
+        <member name="M:LD.Common.WebApi.Filters.ValidateModelFilterAttribute.GetErrorDescription(System.Web.Http.ModelBinding.ModelError)">
+            <summary>
+            Get Error Description
+            </summary>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.WebApi.Headers.AuthorizationHeader">
+            <summary>
+            Parses, Constructs, Manages the value of an AuthorizationHeader
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Headers.AuthorizationHeader.Scheme">
+            <summary>
+            The name of the authorization scheme
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Headers.AuthorizationHeader.Parameters">
+            <summary>
+            Name-value pairs for all parameter strings 
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Headers.AuthorizationHeader.#ctor(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Construct an authorization header from parts
+            </summary>
+            <param name="schemeName">the name of the authorization scheme, no spaces</param>
+            <param name="parameters">a dictionary of string pairs, the keys cannot have spaces, the values can be null</param>
+        </member>
+        <member name="M:LD.Common.WebApi.Headers.AuthorizationHeader.#ctor(System.String)">
+            <summary>
+            Parse an authorization header
+            </summary>
+            <param name="headerValue">the value of the header (does not include "Authorization: ")</param>
+        </member>
+        <member name="M:LD.Common.WebApi.Headers.AuthorizationHeader.#ctor(System.String,System.String)">
+            <summary>
+            Parse an authorization header from scheme and parameter strings
+            </summary>
+            <param name="scheme">the scheme name</param>
+            <param name="parametersValue">all the parameters combined</param>
+        </member>
+        <member name="M:LD.Common.WebApi.Headers.AuthorizationHeader.TryGetParameter(System.String)">
+            <summary>
+            Attempt to get a parameter in the header value by name
+            </summary>
+            <param name="paramName"></param>
+            <returns>the value, or null if not present</returns>
+        </member>
+        <member name="M:LD.Common.WebApi.Headers.AuthorizationHeader.GetHeaderString">
+            <summary>
+            Construct the header string for this authorization header
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.WebApi.Headers.AuthorizationHeader.GetParameterString">
+            <summary>
+            Construct the part of the header string containing the parameters (i.e. not the scheme)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.WebApi.Logging.LoggingMessageHandler">
+            <summary>
+            Handler that runs at start of request flow to log the incoming request and outgoing response
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Logging.LoggingMessageHandler.SetContextId">
+            <summary>
+            Set the context ID (logged as CTX-ABCDE)
+            You only need to call this directly if spawning a thread outside the request flow
+            For example, if using HostingEnvironment.QueueBackgroundWorkItem() or Task.Run()
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Logging.LoggingMessageHandler.#ctor">
+            <summary>
+            Default constructor, will only log requests to /api/
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Logging.LoggingMessageHandler.#ctor(System.String[])">
+            <summary>
+            Constructor with variable loggable paths
+            </summary>
+            <param name="loggablePaths">array of custom loggable paths.  Will only log if uri starts with one of these</param>
+        </member>
+        <member name="M:LD.Common.WebApi.Logging.LoggingMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Override SendAsync
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Logging.LoggingMessageHandler.ShouldLogContent(System.String)">
+            <summary>
+            Utility function which determines if content is suitable for logging
+            </summary>
+            <param name="contentType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.WebApi.Logging.RequestTraceID">
+            <summary>
+            Generates and stores a unique trace id for a request
+            To be used to trace requests from top level services all the way down to lower level services
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Logging.RequestTraceID.Instance">
+            <summary>
+            Shared instance for all requests on a machine
+            </summary>
+        </member>
+        <member name="F:LD.Common.WebApi.Logging.RequestTraceID.RequestTraceIDHeader">
+            <summary>
+            Header name for sending the trace id
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Logging.RequestTraceID.Create">
+            <summary>
+            Create a new request trace id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.WebApi.Logging.RequestTraceID.Get">
+            <summary>
+            Get the current request id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.WebApi.Logging.RequestTraceID.Set(System.String)">
+            <summary>
+            Set the current request trace id
+            </summary>
+            <param name="id">new id</param>
+        </member>
+        <member name="T:LD.Common.WebApi.Response.ApiError">
+            <summary>
+            ApiError Model Object
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Response.ApiError.ErrorCode">
+            <summary>
+            The error code.
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Response.ApiError.ErrorDescription">
+            <summary>
+            A description of the error.
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Response.ApiError.PropertyName">
+            <summary>
+            The property name that the error applies to. Typically this is used when the error code is ValidationError.
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiError.#ctor(System.Enum,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="errorCode"></param>
+            <param name="errorDescription"></param>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:LD.Common.WebApi.Response.ApiErrorCode">
+            <summary>
+            Enumeration of Api Error Codes
+            </summary>
+        </member>
+        <member name="F:LD.Common.WebApi.Response.ApiErrorCode.ServerError">
+            <summary>
+            Equivalent to returning a 500 level status code
+            </summary>
+        </member>
+        <member name="F:LD.Common.WebApi.Response.ApiErrorCode.ValidationError">
+            <summary>
+            Indicates that a parameter value was invalid
+            </summary>
+        </member>
+        <member name="T:LD.Common.WebApi.Response.ApiResponse">
+            <summary>
+            ApiResponse Model Object
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Response.ApiResponse.Success">
+            <summary>
+            Whether or not the operation was successful
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Response.ApiResponse.Errors">
+            <summary>
+            Errors that prevented successful completion of the operation. Only present when Success = false
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiResponse.#ctor(System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiResponse.#ctor(System.Collections.Generic.IEnumerable{LD.Common.WebApi.Response.ApiError})">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiResponse.#ctor(LD.Common.WebApi.Response.ApiError[])">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:LD.Common.WebApi.Response.ApiResponse`1">
+            <summary>
+            ApiResponse model object with an embedded object
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:LD.Common.WebApi.Response.ApiResponse`1.Data">
+            <summary>
+            Response data
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Response.ApiResponse`1.Meta">
+            <summary>
+            Additional metadata for the response data
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiResponse`1.#ctor(System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiResponse`1.#ctor(System.Collections.Generic.IEnumerable{LD.Common.WebApi.Response.ApiError})">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiResponse`1.#ctor(LD.Common.WebApi.Response.ApiError[])">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:LD.Common.WebApi.Response.ApiWebResponses">
+            <summary>
+            Easy way to send Web Responses in WebApi Controllers for loanDepot APIs
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.Success(System.Web.Http.ApiController,System.Net.HttpStatusCode)">
+            <summary>
+            Success message with a custom status code
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.Success``1(System.Web.Http.ApiController,System.Net.HttpStatusCode,``0)">
+            <summary>
+            Success message with a custom status code and data
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.Ok(System.Web.Http.ApiController)">
+            <summary>
+            200 OK
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.Ok``1(System.Web.Http.ApiController,``0)">
+            <summary>
+            200 OK
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.Created(System.Web.Http.ApiController)">
+            <summary>
+            201 Created
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.Created``1(System.Web.Http.ApiController,``0)">
+            <summary>
+            201 Created
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.NoContent(System.Web.Http.ApiController)">
+            <summary>
+            204 No Content
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.Error(System.Web.Http.ApiController,System.Net.HttpStatusCode,System.Enum,System.String)">
+            <summary>
+            Error exception with custom status code and error enum
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.Forbidden(System.Web.Http.ApiController,System.Enum,System.String)">
+            <summary>
+            403 Forbidden (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.Unauthorized(System.Web.Http.ApiController,System.Enum,System.String)">
+            <summary>
+            401 Unauthorized (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.NotFound(System.Web.Http.ApiController,System.Enum,System.String)">
+            <summary>
+            404 Not Found (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.Conflict(System.Web.Http.ApiController,System.Enum,System.String)">
+            <summary>
+            409 Conflict (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.PreconditionFailed(System.Web.Http.ApiController,System.Enum,System.String)">
+            <summary>
+            412 Precondition Failed (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.BadRequest(System.Web.Http.ApiController,System.Enum,System.String)">
+            <summary>
+            400 Bad Request (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.ApiWebResponses.InternalServerError(System.Web.Http.ApiController,System.Enum,System.String)">
+            <summary>
+            500 Internal Server Error (throw)
+            </summary>
+        </member>
+        <member name="T:LD.Common.WebApi.Response.WebResponses">
+            <summary>
+            Easy way to send Web Responses in WebApi Controllers
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Redirect(System.Web.Http.ApiController,System.String)">
+            <summary>
+            Redirect to another path
+            </summary>
+            <param name="ctrl"></param>
+            <param name="route"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Success(System.Web.Http.ApiController,System.Net.HttpStatusCode,System.String)">
+            <summary>
+            Success message with a custom status code
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Success``1(System.Web.Http.ApiController,System.Net.HttpStatusCode,``0,System.String)">
+            <summary>
+            Success message with a custom status code and data
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Ok(System.Web.Http.ApiController,System.String)">
+            <summary>
+            200 OK
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Ok``1(System.Web.Http.ApiController,``0,System.String)">
+            <summary>
+            200 OK
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Created(System.Web.Http.ApiController,System.String)">
+            <summary>
+            201 Created
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Created``1(System.Web.Http.ApiController,``0,System.String)">
+            <summary>
+            201 Created
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.NoContent(System.Web.Http.ApiController,System.String)">
+            <summary>
+            204 No Content
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Error(System.Web.Http.ApiController,System.Net.HttpStatusCode,System.String)">
+            <summary>
+            Error exception with custom status code (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Forbidden(System.Web.Http.ApiController,System.String)">
+            <summary>
+            403 Forbidden (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Unauthorized(System.Web.Http.ApiController,System.String)">
+            <summary>
+            401 Unauthorized (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.NotFound(System.Web.Http.ApiController,System.String)">
+            <summary>
+            404 Not Found (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.Conflict(System.Web.Http.ApiController,System.String)">
+            <summary>
+            409 Conflict (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.PreconditionFailed(System.Web.Http.ApiController,System.String)">
+            <summary>
+            412 Precondition Failed (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.BadRequest(System.Web.Http.ApiController,System.String)">
+            <summary>
+            400 Bad Request (throw)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Response.WebResponses.InternalServerError(System.Web.Http.ApiController,System.String)">
+            <summary>
+            500 Internal Server Error (throw)
+            </summary>
+        </member>
+        <member name="T:LD.Common.WebApi.Routing.RoutingHandler">
+            <summary>
+            This class is referenced in Web.config so that routing to controllers works in all cases.
+            The main case is when you have an email at the end of a rest endpoint
+                e.g.    /api/v1/borrowers/user@domain.com
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Routing.RoutingHandler.VerifyAndProcessRequest(System.Web.IHttpHandler,System.Web.HttpContextBase)">
+            <summary>
+            Override VerifyAndProcessRequest
+            </summary>
+        </member>
+        <member name="T:LD.Common.WebApi.Validation.AgeValidationAttribute">
+            <summary>
+            Validate an age value
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Validation.AgeValidationAttribute.#ctor(System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="minimumAge">int years</param>
+        </member>
+        <member name="M:LD.Common.WebApi.Validation.AgeValidationAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Override IsValid
+            </summary>
+            <param name="value"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.WebApi.Validation.IPAddressAttribute">
+            <summary>
+            Validate IP Address value
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Validation.IPAddressAttribute.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Validation.IPAddressAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Override IsValid
+            </summary>
+            <param name="value"></param>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.WebApi.Validation.IsTrueAttribute">
+            <summary>
+            Validate True/False (checkbox)
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Validation.IsTrueAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Override IsValid
+            </summary>
+            <param name="value"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.WebApi.Validation.RequiredIfAttribute">
+            <summary>
+            Validate required field exists
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Validation.RequiredIfAttribute.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Validation.RequiredIfAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Override IsValid
+            </summary>
+            <param name="value"></param>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.WebApi.Validation.USStateAttribute">
+            <summary>
+            Validate valid US State
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Validation.USStateAttribute.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Validation.USStateAttribute.IsValid(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)">
+            <summary>
+            Override IsValid
+            </summary>
+            <param name="value"></param>
+            <param name="validationContext"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

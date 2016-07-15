@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>LD.Common.Database</id>
+    <version>$version$</version>
+    <title>LD.Common.Database</title>
+    <authors>LDTS</authors>
+    <owners>LDTS</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>LDTS Common Database Framework</description>
+    <releaseNotes>Database Framework for connections, transactions, stored procedures, and raw SQL.  Wraps ADO.NET</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>LDTS Common Database SQL ADO.NET</tags>
+    <iconUrl>https://nugetgallery.blob.core.windows.net/icons/Nuget.Core.1.0.1120.104.png</iconUrl>
+  </metadata>
+</package>

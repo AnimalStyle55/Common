@@ -1,0 +1,779 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LD.Common</name>
+    </assembly>
+    <members>
+        <member name="T:LD.Common.Constants.ContentTypes">
+            <summary>
+            Constants for content types
+            </summary>
+            <remarks>http://stackoverflow.com/questions/10362140/asp-mvc-are-there-any-constants-for-the-default-content-types</remarks>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXJavascript">
+            <summary>Used to denote the encoding necessary for files containing JavaScript source code. The alternative MIME type for this file type is text/javascript.</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioL24">
+            <summary>24bit Linear PCM audio at 8-48kHz, 1-N channels; Defined in RFC 3190</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXShockwaveFlash">
+            <summary>Adobe Flash files for example with the extension .swf</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationOctetStream">
+            <summary>Arbitrary binary data.[5] Generally speaking this type identifies files that are not associated with a specific application. Contrary to past assumptions by software packages such as Apache this is not a type that should be applied to unknown files. In such a case, a server or application should not indicate a content type, as it may be incorrect, but rather, should omit the type in order to allow the recipient to guess the type.[6]</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationAtomXml">
+            <summary>Atom feeds</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.TextCss">
+            <summary>Cascading Style Sheets; Defined in RFC 2318</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.TextCmd">
+            <summary>commands; subtype resident in Gecko browsers like Firefox 3.5</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.TextCsv">
+            <summary>Comma-separated values; Defined in RFC 4180</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXDeb">
+            <summary>deb (file format), a software package format used by the Debian project</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.MultipartEncrypted">
+            <summary>Defined in RFC 1847</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.MultipartSigned">
+            <summary>Defined in RFC 1847</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.MessageHttp">
+            <summary>Defined in RFC 2616</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ModelExample">
+            <summary>Defined in RFC 4735</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXDvi">
+            <summary>device-independent document in DVI format</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXmlDtd">
+            <summary>DTD files; Defined by RFC 3023</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationJavascript">
+            <summary>ECMAScript/JavaScript; Defined in RFC 4329 (equivalent to application/ecmascript but with looser processing rules) It is not accepted in IE 8 or earlier - text/javascript is accepted but it is defined as obsolete in RFC 4329. The "type" attribute of the "script" tag in HTML5 is optional and in practice omitting the media type of JavaScript programs is the most interoperable solution since all browsers have always assumed the correct default even before HTML5.</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationEcmascript">
+            <summary>ECMAScript/JavaScript; Defined in RFC 4329 (equivalent to application/javascript but with stricter processing rules)</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationEdifact">
+            <summary>EDI EDIFACT data; Defined in RFC 1767</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationEdiX12">
+            <summary>EDI X12 data; Defined in RFC 1767</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.MessagePartial">
+            <summary>Email; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.MessageRfc822">
+            <summary>Email; EML files, MIME files, MHT files, MHTML files; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.TextXml">
+            <summary>Extensible Markup Language; Defined in RFC 3023</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.VideoXFlv">
+            <summary>Flash video (FLV files)</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ImageGif">
+            <summary>GIF image; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.TextXGwtRpc">
+            <summary>GoogleWebToolkit data</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXGzip">
+            <summary>Gzip</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.TextHtml">
+            <summary>HTML; Defined in RFC 2854</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ImageVndMicrosoftIcon">
+            <summary>ICO image; Registered[9]</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ModelIges">
+            <summary>IGS files, IGES files; Defined in RFC 2077</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.MessageImdnXml">
+            <summary>IMDN Instant Message Disposition Notification; Defined in RFC 5438</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationJson">
+            <summary>JavaScript Object Notation JSON; Defined in RFC 4627</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.TextJavascript">
+            <summary>JavaScript - Defined in and obsoleted by RFC 4329 in order to discourage its usage in favor of application/javascript. However,text/javascript is allowed in HTML 4 and 5 and, unlike application/javascript, has cross-browser support. The "type" attribute of the "script" tag in HTML5 is optional and there is no need to use it at all since all browsers have always assumed the correct default (even in HTML 4 where it was required by the specification).</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ImagePjpeg">
+            <summary>JPEG JFIF image; Associated with Internet Explorer; Listed in ms775147(v=vs.85) - Progressive JPEG, initiated before global browser support for progressive JPEGs (Microsoft and Firefox).</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ImageJpeg">
+            <summary>JPEG JFIF image; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.TextXJqueryTmpl">
+            <summary>jQuery template data</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndGoogleEarthKmlXml">
+            <summary>KML files (e.g. for Google Earth)</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXLatex">
+            <summary>LaTeX files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.VideoXMatroska">
+            <summary>Matroska open media format</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndOpenxmlformatsOfficedocumentSpreadsheetmlSheet">
+            <summary>Microsoft Excel 2007 files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndMsExcel">
+            <summary>Microsoft Excel files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndOpenxmlformatsOfficedocumentPresentationmlPresentation">
+            <summary>Microsoft Powerpoint 2007 files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndMsPowerpoint">
+            <summary>Microsoft Powerpoint files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndOpenxmlformatsOfficedocumentWordprocessingmlDocument">
+            <summary>Microsoft Word 2007 files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationMsword">
+            <summary>Microsoft Word files[15]</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.MultipartAlternative">
+            <summary>MIME Email; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.MultipartMixed">
+            <summary>MIME Email; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.MultipartRelated">
+            <summary>MIME Email; Defined in RFC 2387 and used by MHTML (HTML mail)</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.MultipartFormData">
+            <summary>MIME Webform; Defined in RFC 2388</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationWwwFormUrlEncoded">
+            <summary>Form URL Encoded; Defined in RFC 1867</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndMozillaXulXml">
+            <summary>Mozilla XUL files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioMpeg">
+            <summary>MP3 or other MPEG audio; Defined in RFC 3003</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioMp4">
+            <summary>MP4 audio</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.VideoMp4">
+            <summary>MP4 video; Defined in RFC 4337</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.VideoMpeg">
+            <summary>MPEG-1 video with multiplexed audio; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ModelMesh">
+            <summary>MSH files, MESH files; Defined in RFC 2077, SILO files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioBasic">
+            <summary>mulaw audio at 8 kHz, 1 channel; Defined in RFC 2046</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.VideoOgg">
+            <summary>Ogg Theora or other video (with audio); Defined in RFC 5334</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioOgg">
+            <summary>Ogg Vorbis, Speex, Flac and other audio; Defined in RFC 5334</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationOgg">
+            <summary>Ogg, a multimedia bitstream container format; Defined in RFC 5334</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXopXml">
+            <summary>OP</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndOasisOpendocumentGraphics">
+            <summary>OpenDocument Graphics; Registered[14]</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndOasisOpendocumentPresentation">
+            <summary>OpenDocument Presentation; Registered[13]</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndOasisOpendocumentSpreadsheet">
+            <summary>OpenDocument Spreadsheet; Registered[12]</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationVndOasisOpendocumentText">
+            <summary>OpenDocument Text; Registered[11]</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXPkcs12">
+            <summary>p12 files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXPkcs7Certificates">
+            <summary>p7b and spc files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXPkcs7Mime">
+            <summary>p7c files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXPkcs7Certreqresp">
+            <summary>p7r files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXPkcs7Signature">
+            <summary>p7s files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationPdf">
+            <summary>Portable Document Format, PDF has been in use for document exchange on the Internet since 1993; Defined in RFC 3778</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ImagePng">
+            <summary>Portable Network Graphics; Registered,[8] Defined in RFC 2083</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationPostscript">
+            <summary>PostScript; Defined in RFC 2046</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.VideoQuicktime">
+            <summary>QuickTime video; Registered[10]</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXRarCompressed">
+            <summary>RAR archive files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioVndRnRealaudio">
+            <summary>RealAudio; Documented in RealPlayer Customer Support Answer 2559</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationRdfXml">
+            <summary>Resource Description Framework; Defined by RFC 3870</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationRssXml">
+            <summary>RSS feeds</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationSoapXml">
+            <summary>SOAP; Defined by RFC 3902</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXStuffit">
+            <summary>StuffIt archive files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ImageSvgXml">
+            <summary>SVG vector image; Defined in SVG Tiny 1.2 Specification Appendix M</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ImageTiff">
+            <summary>Tag Image File Format (only for Baseline TIFF); Defined in RFC 3302</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXTar">
+            <summary>Tarball files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.TextPlain">
+            <summary>Textual data; Defined in RFC 2046 and RFC 3676</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXFontTtf">
+            <summary>TrueType Font No registered MIME type, but this is the most commonly used</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.TextVcard">
+            <summary>vCard (contact information); Defined in RFC 6350</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioVorbis">
+            <summary>Vorbis encoded audio; Defined in RFC 5215</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioVndWave">
+            <summary>WAV audio; Defined in RFC 2361</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationFontWoff">
+            <summary>Web Open Font Format; (candidate recommendation; use application/x-font-woff until standard is official)</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.VideoWebm">
+            <summary>WebM Matroska-based open media format</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioWebm">
+            <summary>WebM open media format</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioXMsWax">
+            <summary>Windows Media Audio Redirector; Documented in Microsoft help page</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.AudioXMsWma">
+            <summary>Windows Media Audio; Documented in Microsoft KB 288102</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.VideoXMsWmv">
+            <summary>Windows Media Video; Documented in Microsoft KB 288102</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ModelVrml">
+            <summary>WRL files, VRML files; Defined in RFC 2077</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ModelX3DXml">
+            <summary>X3D ISO standard for representing 3D computer graphics, X3D XML files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ModelX3DBinary">
+            <summary>X3D ISO standard for representing 3D computer graphics, X3DB binary files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ModelX3DVrml">
+            <summary>X3D ISO standard for representing 3D computer graphics, X3DV VRML files</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationXhtmlXml">
+            <summary>XHTML; Defined by RFC 3236</summary>
+        </member>
+        <member name="F:LD.Common.Constants.ContentTypes.ApplicationZip">
+            <summary>ZIP archive files; Registered[7]</summary>
+        </member>
+        <member name="T:LD.Common.Extensions.Configuration.StringExtensions">
+            <summary>
+            Extensions for strings specifically for loading from app.config/web.config files
+            </summary>
+        </member>
+        <member name="M:LD.Common.Extensions.Configuration.StringExtensions.GetAppSetting(System.String,System.String)">
+            <summary>
+                Converts a string to the value of its corresponding value from <see cref="P:System.Configuration.ConfigurationManager.AppSettings" />
+            </summary>
+            <param name="setting">The name of the setting to retrieve</param>
+            <param name="defaultValue">default if key does not exist</param>
+            <returns>The value of the setting as a string</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.Configuration.StringExtensions.GetAppSetting``1(System.String,``0)">
+            <summary>
+                Converts a string to the value of its corresponding value from <see cref="P:System.Configuration.ConfigurationManager.AppSettings" />
+            </summary>
+            <param name="setting">The name of the setting to retrieve</param>
+            <param name="defaultValue">default if key does not exist</param>
+            <typeparam name="T">The type to convert the value of the setting to</typeparam>
+            <returns>The value of the setting converted to <typeparamref name="T" /></returns>
+        </member>
+        <member name="T:LD.Common.Extensions.DataRowExtensions">
+            <summary>
+            Extensions to ease getting values out of a DataRow
+            </summary>
+        </member>
+        <member name="M:LD.Common.Extensions.DataRowExtensions.AsString(System.Data.DataRow,System.String,System.String)">
+            <summary>Get a value as a string</summary>
+            <returns>string or default if unknown column or null value</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.DataRowExtensions.AsBool(System.Data.DataRow,System.String,System.Boolean)">
+            <summary>Get a value as a bool</summary>
+            <returns>bool or default if unknown column, null value or invalid value</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.DataRowExtensions.AsBoolNull(System.Data.DataRow,System.String)">
+            <summary>Get a value as a bool</summary>
+            <returns>bool or null if unknown column, null value or invalid value</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.DataRowExtensions.AsDecimal(System.Data.DataRow,System.String,System.Decimal)">
+            <summary>Get a value as a decimal</summary>
+            <returns>decimal or default if unknown column or null value</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.DataRowExtensions.AsDecimalNull(System.Data.DataRow,System.String)">
+            <summary>Get a value as a decimal</summary>
+            <returns>decimal or null if unknown column, null value or invalid value</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.DataRowExtensions.AsInt(System.Data.DataRow,System.String,System.Int32)">
+            <summary>Get a value as a int</summary>
+            <returns>int or default if unknown column, null value or invalid value</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.DataRowExtensions.AsIntNullZero(System.Data.DataRow,System.String)">
+            <summary>Get a value as a int, treating 0 as null</summary>
+            <returns>int or null if unknown column, null value, invalid value, or 0</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.DataRowExtensions.AsIntNull(System.Data.DataRow,System.String)">
+            <summary>Get a value as a int</summary>
+            <returns>int or null if unknown column, null value or invalid value</returns>
+        </member>
+        <member name="T:LD.Common.Extensions.EnumExtension">
+            <summary>
+            Extensions for Enums
+            </summary>
+        </member>
+        <member name="M:LD.Common.Extensions.EnumExtension.GetDescription(System.Enum)">
+            <summary>
+            Pulls the description of an Enum from the Description attribute, if it exists
+            </summary>
+            <param name="value"></param>
+            <returns>the description of the Enum value</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.EnumExtension.ToEnum``1(System.Enum)">
+            <summary>
+            Converts to another enum by name (not by integral value)
+            </summary>
+            <param name="value"></param>
+            <returns>an enum value of type T that has the same value as the one from value</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.EnumExtension.ToEnumOrNull``1(System.Enum)">
+            <summary>
+            Converts to another enum by name (not by integral value), supports nullable enums and value not matching
+            </summary>
+            <param name="value"></param>
+            <returns>an enum value of type T that has the same value as the one from value, null if value was null or no match</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.EnumExtension.ToEnumOrDefault``1(System.Enum,``0)">
+            <summary>
+            Converts to another enum by name (not by integral value), supports nullable enums and value not matching
+            </summary>
+            <param name="value"></param>
+            <param name="defaultVal"></param>
+            <returns>an enum value of type T that has the same value as the one from value, defaultVal if there was no match or value was null</returns>
+        </member>
+        <member name="T:LD.Common.Extensions.ICommunicationObjectExtensions">
+            <summary>
+            Extensions for WCF service clients
+            </summary>
+        </member>
+        <member name="M:LD.Common.Extensions.ICommunicationObjectExtensions.Dispose(System.ServiceModel.ICommunicationObject)">
+            <summary>
+            https://msdn.microsoft.com/en-us/library/aa355056.aspx
+            WCF Clients can throw in their close method, which makes a using block potentially swallow exceptions thrown within it
+            This extension method safely closes the client
+            </summary>
+            <param name="client">service client stub</param>
+        </member>
+        <member name="T:LD.Common.Extensions.NullableExtensions">
+            <summary>
+            Extensions for nullable types
+            </summary>
+        </member>
+        <member name="M:LD.Common.Extensions.NullableExtensions.ToStringOrNull``1(System.Nullable{``0})">
+            <summary>
+            Convert a nullable type to string, or null if the nullable is null
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="nullable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Extensions.NullableExtensions.ToValueOrDefault``1(System.Nullable{``0},``0)">
+            <summary>
+            Get Nullable value without null check.
+            </summary>
+            <typeparam name="T">Type of the nullable.</typeparam>
+            <param name="value">Nullable value to get.</param>
+            <param name="defaultValue">defaultValue to return if value is null.</param>
+            <returns>value or defaultValue if value is null</returns>
+        </member>
+        <member name="T:LD.Common.Extensions.StringExtensions">
+            <summary>
+            Extenstions for strings
+            </summary>
+        </member>
+        <member name="M:LD.Common.Extensions.StringExtensions.ToEnum``1(System.String)">
+            <summary>
+            Converts a string to an enumeration of the specified type
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="s"></param>
+            <returns>an enumeration of the specified type</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.StringExtensions.ToEnumOrDefault``1(System.String,``0)">
+            <summary>
+            Converts a string to an enumeration of the specified type, or a default value if null or empty
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="s"></param>
+            <param name="defaultVal"></param>
+            <returns>an enumeration of the specified type, or the defaut</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.StringExtensions.ToEnumOrNull``1(System.String)">
+            <summary>
+            Converts a string to an enumeration of the specified type, or to null if null or empty
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="s"></param>
+            <returns>a nullable enumeration of the specified type, or null</returns>
+        </member>
+        <member name="T:LD.Common.Extensions.SensitiveDataExtensions">
+            <summary>
+            Methods to help protect sensitive data from appearing in logs
+            </summary>
+        </member>
+        <member name="M:LD.Common.Extensions.SensitiveDataExtensions.MaskJsonValues(System.String,System.String,System.String)">
+            <summary>
+            Masks values in the provided JSON string which match the provided key and value regular expression.
+            </summary>
+            <param name="s"></param>
+            <param name="keyRegEx"></param>
+            <param name="valueRegEx"></param>
+            <returns>string with masked specified data</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.SensitiveDataExtensions.MaskQueryStringValues(System.String,System.String,System.String)">
+            <summary>
+            Masks values in the provided URI query string which match the provided key and value regular expression.
+            </summary>
+            <param name="s"></param>
+            <param name="keyRegEx"></param>
+            <param name="valueRegEx"></param>
+            <returns>string with masked specified data</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.SensitiveDataExtensions.MaskSsn(System.String)">
+            <summary>
+            Masks json and xml versions of the ssn field
+            </summary>
+            <param name="s"></param>
+            <returns>string with masked ssn values</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.SensitiveDataExtensions.MaskPassword(System.String)">
+            <summary>
+            Masks json and xml versions of the password field
+            </summary>
+            <param name="s"></param>
+            <returns>string with masked password values</returns>
+        </member>
+        <member name="M:LD.Common.Extensions.SensitiveDataExtensions.MaskXmlValues(System.String,System.String,System.String)">
+            <summary>
+            Masks values in the provided XML string which match the provided key and value regular expression.
+            </summary>
+            <param name="s"></param>
+            <param name="keyRegEx"></param>
+            <param name="valueRegEx"></param>
+            <returns>string with masked specified data</returns>
+        </member>
+        <member name="T:LD.Common.Mapping.PropertyNameInjection">
+            <summary>
+            A custom ValueInjecter injection which will attempt to inject
+            properties with the same name. Will perform string to enum conversion
+            as well as deep injection of complex objects, arrays, and ICollections.
+            
+            </summary>
+            <example>
+            Manual Injection
+            <code>
+            Bar bar = new Bar();
+            bar.InjectFrom&lt;PropertyNameInjection&gt;(foo);
+            </code>
+            
+            Setting up the default injection for the Mapper static class
+            <code>
+            StaticValueInjecter.DefaultInjection = new PropertyNameInjection();
+            Foo foo = new Foo() { };
+            Mapper.Map&lt;Bar&gt;(foo);
+            </code>
+            </example>
+        </member>
+        <member name="M:LD.Common.Mapping.PropertyNameInjection.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Mapping.PropertyNameInjection.MatchTypes(System.Type,System.Type)">
+            <summary>
+            Returns whether or not the source and target types are mappable.
+            </summary>
+            <param name="sourceType"></param>
+            <param name="targetType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Mapping.PropertyNameInjection.SetValue(System.Object,System.Object,System.Reflection.PropertyInfo,System.Reflection.PropertyInfo)">
+            <summary>
+            Set value of the target property using the source property mapping.
+            </summary>
+            <param name="source"></param>
+            <param name="target"></param>
+            <param name="sp"></param>
+            <param name="tp"></param>
+        </member>
+        <member name="T:LD.Common.Utils.HexUtil">
+            <summary>
+            Utility class for converting bytes to hex strings and vice versa
+            </summary>
+        </member>
+        <member name="M:LD.Common.Utils.HexUtil.ToHex(System.Byte[])">
+            <summary>
+            Convert an array of bytes to a hex string (lower case).
+            e.g.  [0x12, 0xab, 0x4f] becomes "12ab4f"
+            </summary>
+            <param name="bytes">0 or more bytes</param>
+            <returns>lower case hex string</returns>
+        </member>
+        <member name="M:LD.Common.Utils.HexUtil.ToBytes(System.String)">
+            <summary>
+            Convert a hex string into an array of bytes
+            </summary>
+            <param name="hex">a string containing hex digits [0-9A-Fa-f]</param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.Utils.TimeUtil">
+            <summary>
+            Utilities for performing date and time calculations
+            </summary>
+        </member>
+        <member name="T:LD.Common.Utils.TimeUtil.Zones">
+            <summary>
+            Supported time zones for 3rd party input/output and for display
+            </summary>
+        </member>
+        <member name="F:LD.Common.Utils.TimeUtil.Zones.LoanDepot">
+            <summary>The LoanDepot time zone is currently Pacific, use when you want a TZ that represents LD corporate</summary>
+        </member>
+        <member name="F:LD.Common.Utils.TimeUtil.Zones.Eastern">
+            <summary>EST</summary>
+        </member>
+        <member name="F:LD.Common.Utils.TimeUtil.Zones.Central">
+            <summary>CST</summary>
+        </member>
+        <member name="F:LD.Common.Utils.TimeUtil.Zones.Mountain">
+            <summary>MST</summary>
+        </member>
+        <member name="F:LD.Common.Utils.TimeUtil.Zones.Pacific">
+            <summary>PST</summary>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.YearDiff(System.DateTime,System.DateTime)">
+            <summary>
+            Calculate the difference between two dates in decimal years
+            </summary>
+            <param name="newer"></param>
+            <param name="older"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.MostRecent(System.DateTime,System.DateTime)">
+            <summary>
+            Determine which of two dates is the newer date
+            </summary>
+            <param name="date1"></param>
+            <param name="date2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.RoundToSecond(System.DateTime)">
+            <summary>
+            Round a date time to the nearest second (i.e. remove the milliseconds)
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.BeginningOfDay(System.DateTime)">
+            <summary>
+            Return a datetime at the beginning of the day
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.EndOfDay(System.DateTime)">
+            <summary>
+            Return a datetime at the end of the day
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.DaysInYear(System.Int32)">
+            <summary>
+            Returns the number of days in the given year
+            </summary>
+            <param name="year"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.LogExecTime(System.Action,System.String,Common.Logging.ILog)">
+            <summary>
+            Time the duration of an action and log it
+            </summary>
+            <param name="action">code to time</param>
+            <param name="description">(optional) description of action</param>
+            <param name="theLog">(optional) log variable to use</param>
+        </member>
+        <member name="P:LD.Common.Utils.TimeUtil.LoanDepotUtcOffsetMinutes">
+            <summary>
+            Returns the UTC offset of the Loan Depot time zone in minutes
+            </summary>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.IsLoanDepotTimeInDST(System.Nullable{System.DateTime})">
+            <summary>
+            Determine if a time in Loan Depot time zone is currently in Daylight Savings Time
+            </summary>
+            <param name="time">null to use the current time</param>
+            <returns>true if time is in DST</returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.ToLoanDepotTime(System.DateTime)">
+            <summary>
+            Converts a DateTime in UTC to the LoanDepot time zone
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.ToLoanDepotTime(System.Nullable{System.DateTime})">
+            <summary>
+            Converts a DateTime? in UTC to the LoanDepot time zone
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="P:LD.Common.Utils.TimeUtil.LoanDepotTime">
+            <summary>
+            Returns the current time in the LoanDepot time zone
+            </summary>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.ToUtc(System.DateTime,LD.Common.Utils.TimeUtil.Zones)">
+            <summary>
+            Converts a DateTime from a time zone to UTC
+            </summary>
+            <param name="date"></param>
+            <param name="timeZone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.ToUtc(System.Nullable{System.DateTime},LD.Common.Utils.TimeUtil.Zones)">
+            <summary>
+            Converts a DateTime? from Pacific time zone to UTC
+            </summary>
+            <param name="date"></param>
+            <param name="timeZone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.FromUtc(System.DateTime,LD.Common.Utils.TimeUtil.Zones)">
+            <summary>
+            Converts a DateTime from UTC to a time zone
+            </summary>
+            <param name="date"></param>
+            <param name="timeZone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.FromUtc(System.Nullable{System.DateTime},LD.Common.Utils.TimeUtil.Zones)">
+            <summary>
+            Converts a DateTime from UTC to a time zone
+            </summary>
+            <param name="date"></param>
+            <param name="timeZone"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.Utils.TimeUtil.TimeLogger">
+            <summary>
+            Handy class to log the duration of code inside a using block
+            </summary>
+            <example>
+            using(new TimeLogger("some code", log))
+            {
+                some code
+            }
+            will log:  "some code Took: 00.00.00.274472"
+            </example>
+        </member>
+        <member name="P:LD.Common.Utils.TimeUtil.TimeLogger.Duration">
+            <summary>
+            Duration of the stop watch (as of time of call)
+            </summary>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.TimeLogger.#ctor(System.String,Common.Logging.ILog)">
+            <summary>
+            Construct a TimeLogger
+            </summary>
+            <param name="description">logged before and after scope block</param>
+            <param name="theLog">(optional) log object to use</param>
+        </member>
+        <member name="M:LD.Common.Utils.TimeUtil.TimeLogger.Dispose">
+            <summary>
+            Stops the timing and logs the total duration
+            </summary>
+        </member>
+        <member name="T:Common.Logging.LoanDepotLogManager">
+             <summary>
+             Workaround for an issue in Common.Logging
+             https://github.com/net-commons/common-logging/issues/22
+            
+             They have deprecated LogManager.GetLogger() because when declaring loggers
+             in non-static context with dynamic types (and with dependency injection frameworks),
+             the current class detection doesn't work.
+            
+             This lets us do what GetCurrentClassLogger() did without the Obsolete warnings, and without
+             having to do .GetLogger(typeof(class)) everywhere.  We only declare our loggers statically.
+             </summary>
+        </member>
+        <member name="M:Common.Logging.LoanDepotLogManager.GetLogger">
+            <summary>
+            Get the logger for the current class.
+            It must be declared as private static readonly at the top of the class
+            </summary>
+        </member>
+        <member name="M:Common.Logging.LoanDepotLogManager.SetContextId(System.Int64)">
+            <summary>
+            Set the context ID
+            </summary>
+            <param name="contextId">a long, but only the bottom 20 bits are used</param>
+        </member>
+        <member name="M:Common.Logging.LoanDepotLogManager.GetContextId">
+            <summary>
+            Get the context ID
+            </summary>
+            <returns>a 5 digit hex number for this async context</returns>
+        </member>
+    </members>
+</doc>

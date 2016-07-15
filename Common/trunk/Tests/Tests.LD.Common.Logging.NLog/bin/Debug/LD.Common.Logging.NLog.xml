@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LD.Common.Logging.NLog</name>
+    </assembly>
+    <members>
+        <member name="T:LD.Common.Logging.NLog.Renderers.AsyncCtxRenderer">
+            <summary>
+            Custom renderer that will log some value for all items in am async context
+            </summary>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.AsyncCtxRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Renders the specified MDLC item and appends it to the specified <see cref="T:System.Text.StringBuilder" />.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
+            <param name="logEvent">Logging event.</param>
+        </member>
+        <member name="T:LD.Common.Logging.NLog.Renderers.ExceptionRenderer">
+            <summary>
+            Custom Renderer for nicer exceptions in the log
+            </summary>
+        </member>
+        <member name="P:LD.Common.Logging.NLog.Renderers.ExceptionRenderer.MaxFrames">
+            <summary>
+            Maximum number of stack frames in an exception log
+            </summary>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.ExceptionRenderer.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.ExceptionRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Called by NLog to append our data
+            </summary>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.ExceptionRenderer.AppendException(System.Exception,System.Text.StringBuilder,System.Int32,System.Boolean)">
+            <summary>
+            Append an exception to the log
+            </summary>
+            <param name="ex"></param>
+            <param name="builder"></param>
+            <param name="level">the 0-based depth of this exception</param>
+            <param name="isParentAggregate">true if this exception is an InnerException of an AggregateException</param>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.ExceptionRenderer.WriteException(System.Exception,System.Text.StringBuilder,System.Int32,System.Boolean)">
+            <summary>
+            Write an exception to the log
+            </summary>
+            <param name="ex"></param>
+            <param name="builder"></param>
+            <param name="level"></param>
+            <param name="isParentAggregate">true if this exception is an InnerException of an AggregateException</param>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.ExceptionRenderer.LevelPrefix(System.Int32)">
+            <summary>
+            Returns a prefix for the log line based on the level of an exception
+            </summary>
+            <param name="level"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.ExceptionRenderer.AppendStack(System.Diagnostics.StackFrame[],System.Text.StringBuilder)">
+            <summary>
+            Append the stack trace
+            </summary>
+            <param name="trace"></param>
+            <param name="builder"></param>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.ExceptionRenderer.AppendFileInfo(System.Diagnostics.StackFrame,System.Text.StringBuilder)">
+            <summary>
+            Construct the file info (file name and line number)
+            </summary>
+            <param name="frame"></param>
+            <param name="builder"></param>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.ExceptionRenderer.filterDir(System.IO.DirectoryInfo,System.Text.StringBuilder)">
+            <summary>
+            do a post-order traversal to append the path of the file, stopping at the first "LD.Leads"
+            so it doesn't log the full path that was on the build machine
+            </summary>
+            <param name="di"></param>
+            <param name="sb"></param>
+        </member>
+        <member name="T:LD.Common.Logging.NLog.Renderers.FilteredMessageRenderer">
+            <summary>
+            Custom renderer for filtering sensitive data and truncating on max length
+            </summary>
+        </member>
+        <member name="P:LD.Common.Logging.NLog.Renderers.FilteredMessageRenderer.MaxLength">
+            <summary>
+            Max line length
+            </summary>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.FilteredMessageRenderer.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.FilteredMessageRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Called by NLog to append our data
+            </summary>
+        </member>
+        <member name="T:LD.Common.Logging.NLog.Renderers.LogFileNameRenderer">
+            <summary>
+            Custom log file name renderer to set the log file name
+            </summary>
+        </member>
+        <member name="P:LD.Common.Logging.NLog.Renderers.LogFileNameRenderer.Component">
+            <summary>Software Component Name</summary>
+        </member>
+        <member name="P:LD.Common.Logging.NLog.Renderers.LogFileNameRenderer.Environment">
+            <summary>Environment Name</summary>
+        </member>
+        <member name="P:LD.Common.Logging.NLog.Renderers.LogFileNameRenderer.IncludeMachine">
+            <summary>whether to include machine name</summary>
+        </member>
+        <member name="P:LD.Common.Logging.NLog.Renderers.LogFileNameRenderer.Type">
+            <summary>Type (error or none)</summary>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.LogFileNameRenderer.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Logging.NLog.Renderers.LogFileNameRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Called by NLog to append our data
+            </summary>
+        </member>
+    </members>
+</doc>

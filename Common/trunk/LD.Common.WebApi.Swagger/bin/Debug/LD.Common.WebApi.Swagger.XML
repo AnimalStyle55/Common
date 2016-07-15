@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LD.Common.WebApi.Swagger</name>
+    </assembly>
+    <members>
+        <member name="T:LD.Common.WebApi.Swagger.CustomHeaderParameter">
+            <summary>
+            Operation filter for Swagger UI to add a custom header parameter
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Swagger.CustomHeaderParameter.Filter">
+            <summary>
+            Function which will be called with each api description
+            Return true to add the header to the swagger operation
+            </summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Swagger.CustomHeaderParameter.Description">
+            <summary>User friendly description of the header</summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Swagger.CustomHeaderParameter.Key">
+            <summary>A unique identifier for the header (auto set to guid)</summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Swagger.CustomHeaderParameter.Name">
+            <summary>Name of the header (e.g. Authorization)</summary>
+        </member>
+        <member name="P:LD.Common.WebApi.Swagger.CustomHeaderParameter.Default">
+            <summary>Default pre-filled value for the header</summary>
+        </member>
+        <member name="M:LD.Common.WebApi.Swagger.CustomHeaderParameter.Apply(Swashbuckle.Application.SwaggerDocsConfig)">
+            <summary>
+            Apply header config to a full configuration
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="M:LD.Common.WebApi.Swagger.CustomHeaderParameter.Apply(Swashbuckle.Swagger.Operation,Swashbuckle.Swagger.SchemaRegistry,System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Apply header config to a specific operation
+            </summary>
+            <param name="operation"></param>
+            <param name="schemaRegistry"></param>
+            <param name="apiDescription"></param>
+        </member>
+    </members>
+</doc>

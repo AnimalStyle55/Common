@@ -1,0 +1,532 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LD.Common.Security</name>
+    </assembly>
+    <members>
+        <member name="F:LD.Common.Security.Crypto.DataEncryption.VER_HMACSHA256_AESCBC">
+            <summary>
+            Version tag as the first byte in an encrypted token
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.DataEncryption.EncryptToUrlSafeToken(System.Byte[],System.Byte[])">
+            <summary>
+            Encrypt bytes into a url-safe token string, suitable for sending out into the world
+            </summary>
+            <param name="masterKey">A 128-bit master key for encryption and HMAC</param>
+            <param name="plainText">the content</param>
+            <returns>the token as a string</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.DataEncryption.Encrypt(System.Byte[],System.Byte[])">
+            <summary>
+            Encrypt bytes, suitable for sending out into the world
+            </summary>
+            <param name="masterKey">A 128-bit master key for encryption and HMAC</param>
+            <param name="plainText">the content</param>
+            <returns>the token as a string</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.DataEncryption.Decrypt(System.Byte[],System.Byte[])">
+            <summary>
+            Decrypt bytes that were previously encrypted
+            </summary>
+            <param name="masterKey">A 128-bit master key for HMAC and decryption</param>
+            <param name="data">the token</param>
+            <returns>the decrypted bytes, or null if token was not valid</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.DataEncryption.DecryptUrlSafeToken(System.Byte[],System.String)">
+            <summary>
+            Decrypt a url-safe token that was previously encrypted
+            </summary>
+            <param name="masterKey">A 128-bit master key for HMAC and decryption</param>
+            <param name="token">the token</param>
+            <returns>the decrypted bytes, or null if token was not valid</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.DataEncryption.deriveKeys(System.Byte[],System.Byte[])">
+            <summary>
+            Derive 2 keys from a master key with a given salt
+            </summary>
+            <remarks>
+            The purpose of this is to use 2 different keys, 1 for encryption and 1 for HMAC
+            2 keys can be safely derived from a single key using PBKDF2.
+            see Crypto.HmacPBKDF2() for why we generate a key prime and then regenerate a double sized key
+            </remarks>
+            <param name="masterKey"></param>
+            <param name="salt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.Security.Crypto.ISecureData">
+            <summary>
+            Securly Encrypt and Decrypt Data
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.Encrypt(System.Byte[])">
+            <summary>
+            Encrypt bytes to bytes
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.Encrypt(System.String)">
+            <summary>
+            Encrypt string to bytes
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.EncryptToBase64(System.Byte[])">
+            <summary>
+            Encrypt bytes to Url-Safe Base64 Encoded string
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.EncryptToBase64(System.String)">
+            <summary>
+            Encrypt string to Url-Safe Base64 Encoded string
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.EncryptToHex(System.Byte[])">
+            <summary>
+            Encrypt bytes to a Hex String  [0x03, 0xa4] => "03a4"
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.EncryptToHex(System.String)">
+            <summary>
+            Encrypt bytes to a Hex String  [0x03, 0xa4] => "03a4"
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.Decrypt(System.Byte[])">
+            <summary>
+            Decrypt bytes to bytes
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.DecryptBase64(System.String)">
+            <summary>
+            Decrypt Url-Safe Base64 Encoded string to bytes
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.DecryptHex(System.String)">
+            <summary>
+            Decrypt Hex string to bytes
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.DecryptToString(System.Byte[])">
+            <summary>
+            Decrypt bytes to string
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.DecryptBase64ToString(System.String)">
+            <summary>
+            Decrypt Url-Safe Base64 Encoded string to string
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureData.DecryptHexToString(System.String)">
+            <summary>
+            Decrypt Hex string to string
+            </summary>
+        </member>
+        <member name="T:LD.Common.Security.Crypto.ISecureHash">
+            <summary>
+            Interface for hashing capabilities
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureHash.PredictableHash(System.String)">
+            <summary>
+            Perform a predictable hash on a value.
+            Useful for something that must be encrypted, but also searched for duplicates (like ssn)
+            </summary>
+            <param name="value">data (like ssn)</param>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureHash.HashPassword(System.String)">
+            <summary>
+            Securly Hash a password into a one-way hashed value
+            </summary>
+            <param name="password">password from user</param>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.ISecureHash.VerifyPasswordHash(System.String,System.String)">
+            <summary>
+            Verify a password against the hash
+            </summary>
+            <param name="password">password from user</param>
+            <param name="hash">hash from storage</param>
+            <returns>true if password matches, false otherwise</returns>
+        </member>
+        <member name="T:LD.Common.Security.Crypto.Primitives">
+            <summary>
+            Utility class containing cryptography primitives for use by other projects
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.GetSecureRandomBytes(System.Int32)">
+            <summary>
+            Generate secure random bytes suitable for cryptography
+            </summary>
+            <param name="nBytes"></param>
+            <returns>array of bytes</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.GetSecureRNG">
+            <summary>
+            Get a secure random number generator
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.HmacPBKDF2(System.String,System.Byte[],System.Int32)">
+            <summary>
+            Securely hash some plain text using PBKDF2/HMAC-SHA1
+            </summary>
+            <remarks>http://en.wikipedia.org/wiki/PBKDF2</remarks>
+            <param name="password">the secret value, used to derive the key</param>
+            <param name="salt">the message for the HMAC calculation, should be at least 128-bits</param>
+            <param name="iterations">how 'slow' you want the hash.  More is more secure.  100K for Passwords (as of 2016)</param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.HmacPBKDF2(System.Byte[],System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Securely stretch a key using PBKDF2/HMAC
+            </summary>
+            <remarks>
+            http://en.wikipedia.org/wiki/PBKDF2
+            To properly use this to do key stretching when you need more than 16 bytes is
+            keyPrime = HmacPBKDF2(key, salt, 16)
+            keys = HmacPBKDF2(keyPrime, salt, 32)
+            key1 = keys[0..15]
+            key2 = keys[16..31]
+            </remarks>
+            <param name="key">the secret value, used to derive the key</param>
+            <param name="salt">the message for the HMAC calculation, should be at least 128-bits</param>
+            <param name="iterations">how 'slow' you want the hash.  More is more secure, but slower.</param>
+            <param name="outputBytes">how many bytes of output you need</param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.EncryptAES_CBC(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Encrypt some plaintext using AES-128/192/256-CBC
+            </summary>
+            <param name="key">a 128/192/256 bit key</param>
+            <param name="plaintext">byte array</param>
+            <param name="iv">a 128-bit initialization vector</param>
+            <returns>an encrypted ciphertext</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.DecryptAES_CBC(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Decrypt a ciphertext using AES-128/192/256-CBC
+            </summary>
+            <param name="key">a 128/192/256 bit key</param>
+            <param name="cipherText">byte array</param>
+            <param name="iv">a 128-bit initialization vector</param>
+            <returns>the decrypted plaintext</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.DecryptAES_CBC(System.Byte[],System.Byte[],System.Int32,System.Int32,System.Byte[])">
+            <summary>
+            Decrypt a ciphertext using AES-128/192/256-CBC from a buffer
+            </summary>
+            <param name="key">a 128/192/256 bit key</param>
+            <param name="buffer">byte array</param>
+            <param name="cipherOffset">where the cipher is in buffer</param>
+            <param name="cipherLength">how long the cipher is</param>
+            <param name="iv">a 128-bit initialization vector</param>
+            <returns>the decrypted plaintext</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.HmacSHA256(System.Byte[],System.Byte[])">
+            <summary>
+            Compute an HMAC-SHA256 hash for a ciphertext and a key
+            </summary>
+            <param name="cipherText">the encrypted message (for CBC, should include version,IV,cipherText)</param>
+            <param name="key">key used to compute HMAC</param>
+            <remarks>
+            When using HMAC for message authentication, be sure to
+            a) encrypt then HMAC
+            b) include all data in the HMAC (version, IV, cipherText)
+            </remarks>
+            <returns>the hash (32 bytes)</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.VerifyHmacSHA256(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Confirm that a given hmac is valid for the ciphertext
+            </summary>
+            <param name="hmac">the hmac sent in the message</param>
+            <param name="cipherText">the encrypted message</param>
+            <param name="key">key used to compute HMAC</param>
+            <returns>true if valid, false if not</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.VerifyHmacSHA256(System.Byte[],System.Int32,System.Int32,System.Int32,System.Byte[])">
+            <summary>
+            Confirm that a given hmac is valid for the ciphertext
+            </summary>
+            <param name="buffer">buffer containing cipher and hmac</param>
+            <param name="hmacOffset">where the hmac is in the buffer</param>
+            <param name="cipherOffset">where the cipher is in the buffer</param>
+            <param name="cipherLength">how long the cipher is</param>
+            <param name="key">key used to compute HMAC</param>
+            <returns>true if valid, false if not</returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.SecureEquals(System.Byte[],System.Byte[])">
+            <summary>
+            Do a length constant comparison of two byte arrays
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <remarks>read about length constant comparison here
+            https://crackstation.net/hashing-security.htm
+            Essentially, the fact that if the hash doesn't match, normal '==' will return faster
+            This makes every comparison take the same time regardless of equality
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.Primitives.SecureEquals(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Do a length constant comparison of two byte arrays
+            </summary>
+            <seealso cref="M:LD.Common.Security.Crypto.Primitives.SecureEquals(System.Byte[],System.Byte[])"/>
+            <param name="a"></param>
+            <param name="a_offset"></param>
+            <param name="a_length"></param>
+            <param name="b"></param>
+            <param name="b_offset"></param>
+            <param name="b_length"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.Security.Crypto.SecureData">
+            <summary>
+            Implementation of ISecureData
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.#ctor(System.String)">
+            <summary>
+            Securly encrypt data
+            </summary>
+            <param name="key">encryption key, 16 hex bytes</param>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.Encrypt(System.Byte[])">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.Encrypt(System.String)">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.EncryptToBase64(System.Byte[])">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.EncryptToBase64(System.String)">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.EncryptToHex(System.Byte[])">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.EncryptToHex(System.String)">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.Decrypt(System.Byte[])">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.DecryptBase64(System.String)">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.DecryptToString(System.Byte[])">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.DecryptBase64ToString(System.String)">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.DecryptHex(System.String)">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureData.DecryptHexToString(System.String)">
+            <see cref="T:LD.Common.Security.Crypto.ISecureData"/>
+        </member>
+        <member name="T:LD.Common.Security.Crypto.SecureHash">
+            <summary>
+            Implementation of ISecureHash
+            </summary>
+        </member>
+        <member name="F:LD.Common.Security.Crypto.SecureHash.CurrentIterationVersion">
+            <summary>
+            The Iteration version for the Password Iterations
+            </summary>
+        </member>
+        <member name="F:LD.Common.Security.Crypto.SecureHash.CurrentPredictableIterations">
+            <summary>
+            The default iterations for predictable hashes
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureHash.#ctor(System.Byte,System.String,System.Int32)">
+            <summary>
+            Securly encrypt data
+            </summary>
+            <param name="passwordIterVer">version indicating the of hashing rounds for passwords</param>
+            <param name="predictableHashKey">key for predictable hashes, 16 hex bytes</param>
+            <param name="predictableIterations"># of iteration rounds for predictable hashes</param>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureHash.#ctor(System.String)">
+            <summary>
+            Securly encrypt data
+            </summary>
+            <param name="predictableHashKey">key for predictable hashes, 16 hex bytes</param>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureHash.HashPassword(System.String)">
+            <see cref="T:LD.Common.Security.Crypto.ISecureHash"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureHash.VerifyPasswordHash(System.String,System.String)">
+            <see cref="T:LD.Common.Security.Crypto.ISecureHash"/>
+        </member>
+        <member name="M:LD.Common.Security.Crypto.SecureHash.PredictableHash(System.String)">
+            <see cref="T:LD.Common.Security.Crypto.ISecureHash"/>
+        </member>
+        <member name="T:LD.Common.Security.SecurityException">
+            <summary>
+            base class for all exceptions thrown in security classes
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.SecurityException.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.SecurityException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.SecurityException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:LD.Common.Security.Tokens.AuthenticationToken">
+             <summary>
+             Represents an authentication token that is securely encrypted,
+             and contains a subject, start/end times, and arbitrary data fields
+            
+             Loosely based on JWT
+             </summary>
+        </member>
+        <member name="P:LD.Common.Security.Tokens.AuthenticationToken.Token">
+            <summary>Encrypted token</summary>
+        </member>
+        <member name="P:LD.Common.Security.Tokens.AuthenticationToken.Expires">
+            <summary>When the token expires</summary>
+        </member>
+        <member name="P:LD.Common.Security.Tokens.AuthenticationToken.Issued">
+            <summary>When the token was issued</summary>
+        </member>
+        <member name="P:LD.Common.Security.Tokens.AuthenticationToken.SubjectGuid">
+            <summary>guid key for the token</summary>
+        </member>
+        <member name="P:LD.Common.Security.Tokens.AuthenticationToken.Data">
+            <summary>custom data values, may be null, must be serializable to JSON</summary>
+        </member>
+        <member name="P:LD.Common.Security.Tokens.AuthenticationToken.IsExpired">
+            <summary>
+            Determine if the token is expired
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.AuthenticationToken.#ctor(System.Byte[],System.Guid,System.TimeSpan,System.Tuple{System.String,System.Object}[])">
+            <summary>
+            Construct a new token
+            </summary>
+            <param name="masterKey">key used to derive other keys</param>
+            <param name="subjectGuid">the guid for the subject (user or app)</param>
+            <param name="lifetime">how long the token is valid</param>
+            <param name="dataItems">optional custom data values, must be serializable to JSON</param>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.AuthenticationToken.#ctor(System.Byte[],System.Guid,System.TimeSpan,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Construct a new token
+            </summary>
+            <param name="masterKey">key used to derive other keys</param>
+            <param name="subjectGuid">the guid for the subject (user or app)</param>
+            <param name="lifetime">how long the token is valid</param>
+            <param name="data">optional custom data values, must be serializable to JSON</param>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.AuthenticationToken.#ctor(System.Byte[],System.String)">
+            <summary>
+            Construct a token from an existing encrypted token
+            </summary>
+            <param name="masterKey">key used to derive other keys</param>
+            <param name="encryptedToken">token from user</param>
+            <exception cref="T:LD.Common.Security.Tokens.InvalidTokenException">if token has been tampered with</exception>
+        </member>
+        <member name="T:LD.Common.Security.Tokens.AuthenticationToken.TokenContents">
+            <summary>
+            The internal values within a token, modeled after a JSON Web Token
+            </summary>
+        </member>
+        <member name="P:LD.Common.Security.Tokens.AuthenticationToken.TokenContents.sub">
+            <summary>
+            The subject, for us: the user guid, base64 encoded
+            </summary>
+        </member>
+        <member name="P:LD.Common.Security.Tokens.AuthenticationToken.TokenContents.exp">
+            <summary>
+            Expiration (seconds since unix epoch)
+            </summary>
+        </member>
+        <member name="P:LD.Common.Security.Tokens.AuthenticationToken.TokenContents.iat">
+            <summary>
+            Issued At (seconds since unix epoch)
+            </summary>
+        </member>
+        <member name="P:LD.Common.Security.Tokens.AuthenticationToken.TokenContents.data">
+            <summary>
+            custom data values, may be null
+            </summary>
+        </member>
+        <member name="T:LD.Common.Security.Tokens.AuthenticationTokenExtensions">
+            <summary>
+            Extensions for AuthenticationTokens
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.AuthenticationTokenExtensions.GetDataField``1(LD.Common.Security.Tokens.AuthenticationToken,System.String,``0)">
+            <summary>
+            Get a field from the Data Dictionary
+            </summary>
+            <typeparam name="T">type that you want</typeparam>
+            <param name="token">the token</param>
+            <param name="keyName">key name in the dictionary</param>
+            <param name="ifNotFound">(optional) value if key not found</param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.AuthenticationTokenExtensions.TryGetDataField``1(LD.Common.Security.Tokens.AuthenticationToken,System.String,``0@)">
+            <summary>
+            Try to get a field from the Data Dictionary
+            </summary>
+            <typeparam name="T">type that you want</typeparam>
+            <param name="token">the token</param>
+            <param name="keyName">key name in the dictionary</param>
+            <param name="value">(out) if found, dictionary value is converted and written</param>
+            <returns>true if found and converted successfully, false otherwise</returns>
+        </member>
+        <member name="T:LD.Common.Security.Tokens.ExpiredTokenException">
+            <summary>
+            exception when a token is expired
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.ExpiredTokenException.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.ExpiredTokenException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.ExpiredTokenException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:LD.Common.Security.Tokens.InvalidTokenException">
+            <summary>
+            exception when a token could not be decrypted or was invalid
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.InvalidTokenException.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.InvalidTokenException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LD.Common.Security.Tokens.InvalidTokenException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+    </members>
+</doc>

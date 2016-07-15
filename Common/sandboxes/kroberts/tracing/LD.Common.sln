@@ -1,0 +1,191 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD.Common", "LD.Common\LD.Common.csproj", "{653AFE50-0AF4-4418-B4AA-56929F35583A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD.Common.Database", "LD.Common.Database\LD.Common.Database.csproj", "{77A54DB5-8688-4615-B185-EE7CB1B53D84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD.Common.Logging.NLog", "LD.Common.Logging.NLog\LD.Common.Logging.NLog.csproj", "{6097DD5D-49FB-4077-9C65-43D2FB09DB8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD.Common.Queue", "LD.Common.Queue\LD.Common.Queue.csproj", "{EE04F604-4FC6-4A9C-94E8-F7F0C3F5373C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD.Common.Security", "LD.Common.Security\LD.Common.Security.csproj", "{FBD09DB9-AAC1-4408-8F12-C92BEA7CFB2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD.Common.Serialization", "LD.Common.Serialization\LD.Common.Serialization.csproj", "{81677B12-B9C2-49B7-8B13-0118DD2361F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD.Common.WebApi", "LD.Common.WebApi\LD.Common.WebApi.csproj", "{86558F57-FF82-4CCA-A696-C7905B72DF5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{53D84936-1CC8-4A8D-B45A-A729079FA2C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.LD.Common", "Tests\Tests.LD.Common\Tests.LD.Common.csproj", "{F4ADCD0D-BDA6-4AB1-9F0D-7AD6E03871F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.LD.Common.Database", "Tests\Tests.LD.Common.Database\Tests.LD.Common.Database.csproj", "{B5CAE3A9-9175-4CF7-93E3-1F99895634F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.LD.Common.Logging.NLog", "Tests\Tests.LD.Common.Logging.NLog\Tests.LD.Common.Logging.NLog.csproj", "{D123DC53-F752-4FAA-898A-A85614653494}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.LD.Common.Security", "Tests\Tests.LD.Common.Security\Tests.LD.Common.Security.csproj", "{0E1B744B-BC60-48CB-AD00-6C3F237AAEF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.LD.Common.Serialization", "Tests\Tests.LD.Common.Serialization\Tests.LD.Common.Serialization.csproj", "{855403E4-4059-4D38-9E95-BEFE0C9BFFFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6CB9571B-1079-4954-9419-A27910A9C17B}"
+	ProjectSection(SolutionItems) = preProject
+		Common.Logging.xsd = Common.Logging.xsd
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.LD.Common.WebApi", "Tests\Tests.LD.Common.WebApi\Tests.LD.Common.WebApi.csproj", "{46BC0C70-85F2-464A-981A-D1097B2456C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD.Common.Net40", "LD.Common.Net40\LD.Common.Net40.csproj", "{61BBF914-5D92-4E3E-8119-C93DECDDE5B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD.Common.Logging.NLog.Net40", "LD.Common.Logging.NLog.Net40\LD.Common.Logging.NLog.Net40.csproj", "{731920B8-A712-44F9-B62D-7B8E9C2E32B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LD.Common.WebApi.Swagger", "LD.Common.WebApi.Swagger\LD.Common.WebApi.Swagger.csproj", "{86682986-C3AC-460E-8ADD-90511FD88CEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{653AFE50-0AF4-4418-B4AA-56929F35583A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{653AFE50-0AF4-4418-B4AA-56929F35583A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{653AFE50-0AF4-4418-B4AA-56929F35583A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{653AFE50-0AF4-4418-B4AA-56929F35583A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A54DB5-8688-4615-B185-EE7CB1B53D84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A54DB5-8688-4615-B185-EE7CB1B53D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A54DB5-8688-4615-B185-EE7CB1B53D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A54DB5-8688-4615-B185-EE7CB1B53D84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6097DD5D-49FB-4077-9C65-43D2FB09DB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6097DD5D-49FB-4077-9C65-43D2FB09DB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6097DD5D-49FB-4077-9C65-43D2FB09DB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6097DD5D-49FB-4077-9C65-43D2FB09DB8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE04F604-4FC6-4A9C-94E8-F7F0C3F5373C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE04F604-4FC6-4A9C-94E8-F7F0C3F5373C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE04F604-4FC6-4A9C-94E8-F7F0C3F5373C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE04F604-4FC6-4A9C-94E8-F7F0C3F5373C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD09DB9-AAC1-4408-8F12-C92BEA7CFB2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD09DB9-AAC1-4408-8F12-C92BEA7CFB2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD09DB9-AAC1-4408-8F12-C92BEA7CFB2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD09DB9-AAC1-4408-8F12-C92BEA7CFB2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81677B12-B9C2-49B7-8B13-0118DD2361F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81677B12-B9C2-49B7-8B13-0118DD2361F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81677B12-B9C2-49B7-8B13-0118DD2361F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81677B12-B9C2-49B7-8B13-0118DD2361F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86558F57-FF82-4CCA-A696-C7905B72DF5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86558F57-FF82-4CCA-A696-C7905B72DF5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86558F57-FF82-4CCA-A696-C7905B72DF5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86558F57-FF82-4CCA-A696-C7905B72DF5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4ADCD0D-BDA6-4AB1-9F0D-7AD6E03871F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4ADCD0D-BDA6-4AB1-9F0D-7AD6E03871F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4ADCD0D-BDA6-4AB1-9F0D-7AD6E03871F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4ADCD0D-BDA6-4AB1-9F0D-7AD6E03871F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5CAE3A9-9175-4CF7-93E3-1F99895634F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5CAE3A9-9175-4CF7-93E3-1F99895634F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5CAE3A9-9175-4CF7-93E3-1F99895634F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5CAE3A9-9175-4CF7-93E3-1F99895634F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D123DC53-F752-4FAA-898A-A85614653494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D123DC53-F752-4FAA-898A-A85614653494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D123DC53-F752-4FAA-898A-A85614653494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D123DC53-F752-4FAA-898A-A85614653494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E1B744B-BC60-48CB-AD00-6C3F237AAEF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E1B744B-BC60-48CB-AD00-6C3F237AAEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E1B744B-BC60-48CB-AD00-6C3F237AAEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E1B744B-BC60-48CB-AD00-6C3F237AAEF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{855403E4-4059-4D38-9E95-BEFE0C9BFFFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855403E4-4059-4D38-9E95-BEFE0C9BFFFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855403E4-4059-4D38-9E95-BEFE0C9BFFFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{855403E4-4059-4D38-9E95-BEFE0C9BFFFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46BC0C70-85F2-464A-981A-D1097B2456C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46BC0C70-85F2-464A-981A-D1097B2456C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46BC0C70-85F2-464A-981A-D1097B2456C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46BC0C70-85F2-464A-981A-D1097B2456C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61BBF914-5D92-4E3E-8119-C93DECDDE5B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61BBF914-5D92-4E3E-8119-C93DECDDE5B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61BBF914-5D92-4E3E-8119-C93DECDDE5B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61BBF914-5D92-4E3E-8119-C93DECDDE5B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731920B8-A712-44F9-B62D-7B8E9C2E32B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731920B8-A712-44F9-B62D-7B8E9C2E32B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731920B8-A712-44F9-B62D-7B8E9C2E32B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731920B8-A712-44F9-B62D-7B8E9C2E32B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86682986-C3AC-460E-8ADD-90511FD88CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86682986-C3AC-460E-8ADD-90511FD88CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86682986-C3AC-460E-8ADD-90511FD88CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86682986-C3AC-460E-8ADD-90511FD88CEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F4ADCD0D-BDA6-4AB1-9F0D-7AD6E03871F3} = {53D84936-1CC8-4A8D-B45A-A729079FA2C7}
+		{B5CAE3A9-9175-4CF7-93E3-1F99895634F2} = {53D84936-1CC8-4A8D-B45A-A729079FA2C7}
+		{D123DC53-F752-4FAA-898A-A85614653494} = {53D84936-1CC8-4A8D-B45A-A729079FA2C7}
+		{0E1B744B-BC60-48CB-AD00-6C3F237AAEF5} = {53D84936-1CC8-4A8D-B45A-A729079FA2C7}
+		{855403E4-4059-4D38-9E95-BEFE0C9BFFFE} = {53D84936-1CC8-4A8D-B45A-A729079FA2C7}
+		{46BC0C70-85F2-464A-981A-D1097B2456C3} = {53D84936-1CC8-4A8D-B45A-A729079FA2C7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 17
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs:8080/tfs/ldts
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = LD.Common\\LD.Common.csproj
+		SccProjectName1 = LD.Common
+		SccLocalPath1 = LD.Common
+		SccProjectUniqueName2 = LD.Common.Database\\LD.Common.Database.csproj
+		SccProjectName2 = LD.Common.Database
+		SccLocalPath2 = LD.Common.Database
+		SccProjectUniqueName3 = LD.Common.Logging.NLog\\LD.Common.Logging.NLog.csproj
+		SccProjectName3 = LD.Common.Logging.NLog
+		SccLocalPath3 = LD.Common.Logging.NLog
+		SccProjectUniqueName4 = LD.Common.Queue\\LD.Common.Queue.csproj
+		SccProjectName4 = LD.Common.Queue
+		SccLocalPath4 = LD.Common.Queue
+		SccProjectUniqueName5 = LD.Common.Security\\LD.Common.Security.csproj
+		SccProjectName5 = LD.Common.Security
+		SccLocalPath5 = LD.Common.Security
+		SccProjectUniqueName6 = LD.Common.Serialization\\LD.Common.Serialization.csproj
+		SccProjectName6 = LD.Common.Serialization
+		SccLocalPath6 = LD.Common.Serialization
+		SccProjectUniqueName7 = LD.Common.WebApi\\LD.Common.WebApi.csproj
+		SccProjectName7 = LD.Common.WebApi
+		SccLocalPath7 = LD.Common.WebApi
+		SccProjectUniqueName8 = Tests\\Tests.LD.Common\\Tests.LD.Common.csproj
+		SccProjectTopLevelParentUniqueName8 = LD.Common.sln
+		SccProjectName8 = Tests/Tests.LD.Common
+		SccLocalPath8 = Tests\\Tests.LD.Common
+		SccProjectUniqueName9 = Tests\\Tests.LD.Common.Database\\Tests.LD.Common.Database.csproj
+		SccProjectTopLevelParentUniqueName9 = LD.Common.sln
+		SccProjectName9 = Tests/Tests.LD.Common.Database
+		SccLocalPath9 = Tests\\Tests.LD.Common.Database
+		SccProjectUniqueName10 = Tests\\Tests.LD.Common.Logging.NLog\\Tests.LD.Common.Logging.NLog.csproj
+		SccProjectTopLevelParentUniqueName10 = LD.Common.sln
+		SccProjectName10 = Tests/Tests.LD.Common.Logging.NLog
+		SccLocalPath10 = Tests\\Tests.LD.Common.Logging.NLog
+		SccProjectUniqueName11 = Tests\\Tests.LD.Common.Security\\Tests.LD.Common.Security.csproj
+		SccProjectTopLevelParentUniqueName11 = LD.Common.sln
+		SccProjectName11 = Tests/Tests.LD.Common.Security
+		SccLocalPath11 = Tests\\Tests.LD.Common.Security
+		SccProjectUniqueName12 = Tests\\Tests.LD.Common.Serialization\\Tests.LD.Common.Serialization.csproj
+		SccProjectTopLevelParentUniqueName12 = LD.Common.sln
+		SccProjectName12 = Tests/Tests.LD.Common.Serialization
+		SccLocalPath12 = Tests\\Tests.LD.Common.Serialization
+		SccProjectUniqueName13 = Tests\\Tests.LD.Common.WebApi\\Tests.LD.Common.WebApi.csproj
+		SccProjectTopLevelParentUniqueName13 = LD.Common.sln
+		SccProjectName13 = Tests/Tests.LD.Common.WebApi
+		SccLocalPath13 = Tests\\Tests.LD.Common.WebApi
+		SccProjectUniqueName14 = LD.Common.Net40\\LD.Common.Net40.csproj
+		SccProjectName14 = LD.Common.Net40
+		SccLocalPath14 = LD.Common.Net40
+		SccProjectUniqueName15 = LD.Common.Logging.NLog.Net40\\LD.Common.Logging.NLog.Net40.csproj
+		SccProjectName15 = LD.Common.Logging.NLog.Net40
+		SccLocalPath15 = LD.Common.Logging.NLog.Net40
+		SccProjectUniqueName16 = LD.Common.WebApi.Swagger\\LD.Common.WebApi.Swagger.csproj
+		SccProjectName16 = LD.Common.WebApi.Swagger
+		SccLocalPath16 = LD.Common.WebApi.Swagger
+	EndGlobalSection
+EndGlobal

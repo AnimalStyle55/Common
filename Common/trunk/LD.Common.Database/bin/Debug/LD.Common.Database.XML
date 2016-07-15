@@ -1,0 +1,616 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LD.Common.Database</name>
+    </assembly>
+    <members>
+        <member name="T:LD.Common.Database.DatabaseExceptionType">
+            <summary>
+            Database Exception Type
+            </summary>
+        </member>
+        <member name="F:LD.Common.Database.DatabaseExceptionType.Unknown">
+            <summary>
+            A Generic SQL Exception
+            </summary>
+        </member>
+        <member name="F:LD.Common.Database.DatabaseExceptionType.KeyConstraintVolation">
+            <summary>
+            When a row could not be inserted due to duplicate key
+            </summary>
+        </member>
+        <member name="F:LD.Common.Database.DatabaseExceptionType.DataValueExpected">
+            <summary>
+            When a row/data value was expected but was not found
+            </summary>
+        </member>
+        <member name="F:LD.Common.Database.DatabaseExceptionType.AuthorizationFailed">
+            <summary>
+            User access control authorization check failed
+            </summary>
+        </member>
+        <member name="F:LD.Common.Database.DatabaseExceptionType.OptimisticLockFailed">
+            <summary>
+            When an optimistic lock assumption fails, transaction should be retried
+            </summary>
+        </member>
+        <member name="F:LD.Common.Database.DatabaseExceptionType.ExpectedRowsMismatch">
+            <summary>
+            Number of rows modified by proc didn't match what was expected
+            </summary>
+        </member>
+        <member name="T:LD.Common.Database.DatabaseException">
+            <summary>Database Exception thrown by LDTS DB Code</summary>
+        </member>
+        <member name="P:LD.Common.Database.DatabaseException.ExceptionType">
+            <summary>
+            Type of the exception
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.DatabaseException.#ctor">
+            <summary>Constructor</summary>
+        </member>
+        <member name="M:LD.Common.Database.DatabaseException.#ctor(System.String)">
+            <summary>Constructor</summary>
+        </member>
+        <member name="M:LD.Common.Database.DatabaseException.#ctor(System.String,System.Exception)">
+            <summary>Constructor</summary>
+        </member>
+        <member name="M:LD.Common.Database.DatabaseException.#ctor(LD.Common.Database.DatabaseExceptionType)">
+            <summary>Constructor</summary>
+        </member>
+        <member name="M:LD.Common.Database.DatabaseException.#ctor(System.String,LD.Common.Database.DatabaseExceptionType)">
+            <summary>Constructor</summary>
+        </member>
+        <member name="M:LD.Common.Database.DatabaseException.#ctor(System.String,System.Exception,LD.Common.Database.DatabaseExceptionType)">
+            <summary>Constructor</summary>
+        </member>
+        <member name="M:LD.Common.Database.IDatabaseConnectionProvider.GetConnection">
+            <summary>
+            Get a SqlConnection from the pool
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.Database.IDeferredSqlConnection">
+            <summary>
+            A Sql Connection that will defer the execution of database writes
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.IDeferredSqlConnection.DeferProc(System.String,System.Boolean,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Add a deferred call to ExecuteProc
+            </summary>
+            <param name="procName"></param>
+            <param name="checkRowsReturned">true to check for >0 rows modified when executed, false to not check</param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:LD.Common.Database.IDeferredSqlConnection.DeferProc(System.String,System.Int32,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Add a deferred call to ExecuteProc
+            </summary>
+            <param name="procName"></param>
+            <param name="expectedRows"># of expected rows modified</param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:LD.Common.Database.IDeferredSqlConnection.ExecuteAll(LD.Common.Database.ISqlConnection)">
+            <summary>
+            Execute all deferred calls
+            </summary>
+            <param name="conn"></param>
+            <exception cref="T:LD.Common.Database.DatabaseException">thrown if any deferred call doesn't meet expected rows</exception>
+        </member>
+        <member name="M:LD.Common.Database.IDeferredSqlConnection.ExecuteAllAsync(LD.Common.Database.ISqlConnection)">
+            <summary>
+            Execute all deferred calls, async
+            </summary>
+            <param name="conn"></param>
+            <exception cref="T:LD.Common.Database.DatabaseException">thrown if any deferred call doesn't meet expected rows</exception>
+        </member>
+        <member name="P:LD.Common.Database.Impl.LoanDepotSqlConnection.CommandTimeout">
+            <summary>
+            The time in seconds to wait for a command to execute before throwing an error.
+            </summary>
+        </member>
+        <member name="T:LD.Common.Database.Impl.ResultSet">
+            <remarks>
+            All "pos" variables are 0-based
+            These are private until a use-case presents itself where you need position access
+            </remarks>
+        </member>
+        <member name="M:LD.Common.Database.Impl.ResultSet.Dispose">
+            <summary>
+            Dispose of the result set
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.Impl.SqlParameterProcessor.ProcessParam(System.Data.SqlClient.SqlParameter)">
+             <summary>
+             Process any changes necessary for SqlParameters
+            
+             - DateTime => to UTC
+             - Enums => to string plus warning
+             - Strings =>
+                   If starting with "NOTRIM-", value will not be trimmed
+                   Otherwise, .Trim()
+             </summary>
+             <param name="param">[in/out] will be modified if needed</param>
+        </member>
+        <member name="M:LD.Common.Database.Impl.StoredProcLogger.ExecToString(System.String,System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter})">
+            <summary>
+            Converts a stored procedure execution to string so it can be logged
+            </summary>
+            <param name="procName"></param>
+            <param name="parameters"></param>
+            <returns>a string containing executable sql</returns>
+        </member>
+        <member name="M:LD.Common.Database.Impl.StoredProcLogger.RawExecToString(System.String,System.Collections.Generic.IEnumerable{System.Data.SqlClient.SqlParameter})">
+            <summary>
+            Converts a raw sql call to a string to it can be logged
+            </summary>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns>a string containing the sql followed by the parameters</returns>
+        </member>
+        <member name="T:LD.Common.Database.IRawSqlConnection">
+            <summary>
+            Interface for executing RAW SQL as well as stored procedures
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.IRawSqlConnection.ExecuteRaw(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a raw SQL command
+            </summary>
+            <param name="sql">The SQL query text</param>
+            <param name="parameters"></param>
+            <returns>the row count of modified rows</returns>
+        </member>
+        <member name="M:LD.Common.Database.IRawSqlConnection.ExecuteRawQuery(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a raw SQL query
+            </summary>
+            <param name="sql">The SQL query text</param>
+            <param name="parameters"></param>
+            <returns>An IEnumerable that can be interated on to get each returned row</returns>
+        </member>
+        <member name="M:LD.Common.Database.IRawSqlConnection.ExecuteRawQueryList``1(System.String,System.Func{LD.Common.Database.IResult,``0},System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a raw SQL query
+            </summary>
+            <param name="sql">The SQL query text</param>
+            <param name="func">A function that converts a row to an object (only called if a row was returned)</param>
+            <param name="parameters"></param>
+            <returns>An IEnumerable that can be interated on to get each returned row</returns>
+        </member>
+        <member name="M:LD.Common.Database.IRawSqlConnection.ExecuteRawAsync(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a raw SQL command, async
+            </summary>
+            <param name="sql">The SQL query text</param>
+            <param name="parameters"></param>
+            <returns>the row count of modified rows</returns>
+        </member>
+        <member name="M:LD.Common.Database.IRawSqlConnection.ExecuteRawQueryListAsync``1(System.String,System.Func{LD.Common.Database.IResult,System.Threading.Tasks.Task{``0}},System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a raw SQL query, async
+            </summary>
+            <param name="sql">The SQL query text</param>
+            <param name="func">A function that converts a row to an object (only called if a row was returned), should be async</param>
+            <param name="parameters"></param>
+            <returns>An IEnumerable that can be interated on to get each returned row</returns>
+        </member>
+        <member name="T:LD.Common.Database.IResult">
+            <summary>
+            Represents a single row result from a database.
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetString(System.String)">
+            <summary>get string column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetInt(System.String)">
+            <summary>get int column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetIntNull(System.String)">
+            <summary>get nullable int column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetLong(System.String)">
+            <summary>get long column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetLongNull(System.String)">
+            <summary>get nullable long column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetDecimal(System.String)">
+            <summary>get decimal column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetDecimalNull(System.String)">
+            <summary>get nullable decimal column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetBool(System.String)">
+            <summary>get bool column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetBoolNull(System.String)">
+            <summary>get nullable bool column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetDateTime(System.String,System.DateTimeKind)">
+            <summary>get DateTime column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetDateTimeNull(System.String,System.DateTimeKind)">
+            <summary>get nullable DateTime column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetTimeSpan(System.String)">
+            <summary>get TimeSpan column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetTimeSpanNull(System.String)">
+            <summary>get nullable TimeSpan column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetGuid(System.String)">
+            <summary>get Guid column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetGuidNull(System.String)">
+            <summary>get nullable Guid column</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetEnum``1(System.String)">
+            <summary>get Enum column, value must match Enum value name</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetEnumDefault``1(System.String,``0)">
+            <summary>get Enum column, or default value if NULL</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetEnumNull``1(System.String)">
+            <summary>get Enum column, null if NULL</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetBytes(System.String)">
+            <summary>Get bytes from varbinary</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.IsNull(System.String)">
+            <summary>check if column is NULL</summary>
+        </member>
+        <member name="M:LD.Common.Database.IResult.GetColumns">
+            <summary>Get a list of column names</summary>
+        </member>
+        <member name="T:LD.Common.Database.IResultSet">
+            <summary>
+            A set of results from a query
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.IResultSet.NextResult">
+            <summary>
+            Get the next result from the set
+            </summary>
+        </member>
+        <member name="T:LD.Common.Database.ISqlConnection">
+            <summary>
+            Interface for SQL Connections
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.SetRollback">
+            <summary>
+            Set this connection to roll back at the end of a transaction
+            without having to throw an exception
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.WillBeRollingBack">
+            <summary>
+            Determine if this connection/transaction has been set for rollback
+            </summary>
+        </member>
+        <member name="P:LD.Common.Database.ISqlConnection.CommandTimeout">
+            <summary>
+            The time in seconds to wait for a command to execute before throwing an error.
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteProc(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns no results
+            </summary>
+            <param name="procName"></param>
+            <param name="parameters"></param>
+            <exception cref="T:LD.Common.Database.DatabaseException">thrown with ExpectedRowsMismatch if proc returns 0 rows modified</exception>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteProc(System.String,System.Int32,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns no results, check for a specific # of rows returned
+            </summary>
+            <param name="procName"></param>
+            <param name="expectedRows">number of rows expected</param>
+            <param name="parameters"></param>
+            <exception cref="T:LD.Common.Database.DatabaseException">thrown with ExpectedRowsMismatch if #rows modified does not equal expectedRows</exception>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteProcUnchecked(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns no results, does not check expected rows
+            </summary>
+            <param name="procName"></param>
+            <param name="parameters"></param>
+            <returns>number of rows affected</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteQueryProc(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure and return results as an enumerable
+            </summary>
+            <param name="procName"></param>
+            <param name="parameters"></param>
+            <returns>An IEnumerable that can be interated on to get each returned row</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteQueryProcList``1(System.String,System.Func{LD.Common.Database.IResult,``0},System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns a list of results
+            </summary>
+            <typeparam name="T">type of the objects in the list</typeparam>
+            <param name="procName"></param>
+            <param name="readerFunc">A function that converts a row to an object (only called if a row was returned)</param>
+            <param name="parameters"></param>
+            <returns>A List of objects, always non-null</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteQueryProcOne(System.String,System.Action{LD.Common.Database.IResult},System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns a single row
+            </summary>
+            <param name="procName"></param>
+            <param name="readerFunc">An action that will be called with a result (only called if a row was returned)</param>
+            <param name="parameters"></param>
+            <returns>true if a row was found, false otherwise</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteQueryProcOne``1(System.String,System.Func{LD.Common.Database.IResult,``0},System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns a single row
+            </summary>
+            <typeparam name="T">type of the single value to return</typeparam>
+            <param name="procName"></param>
+            <param name="readerFunc">A function that extracts a single value from a result (only called if a row was returned).</param>
+            <param name="parameters"></param>
+            <returns>A SqlSingleResult containing the return value from readerFunc, or default(T) if no results returned,
+            and a bool containing whether a row was returned or not</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteProcAsync(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns no results, async
+            </summary>
+            <param name="procName"></param>
+            <param name="parameters"></param>
+            <exception cref="T:LD.Common.Database.DatabaseException">thrown with ExpectedRowsMismatch if proc returns 0 rows modified</exception>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteProcAsync(System.String,System.Int32,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns no results, check for a specific # of rows returned, async
+            </summary>
+            <param name="procName"></param>
+            <param name="expectedRows"></param>
+            <param name="parameters"></param>
+            <exception cref="T:LD.Common.Database.DatabaseException">thrown with ExpectedRowsMismatch if proc returns 0 rows modified</exception>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteProcUncheckedAsync(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns no results, does not check expected rows, async
+            </summary>
+            <param name="procName"></param>
+            <param name="parameters"></param>
+            <returns>number of rows affected</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteQueryProcListAsync``1(System.String,System.Func{LD.Common.Database.IResult,System.Threading.Tasks.Task{``0}},System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns a list of results, async
+            </summary>
+            <typeparam name="T">type of the objects in the list</typeparam>
+            <param name="procName"></param>
+            <param name="readerFunc">A function that converts a row to an object (only called if a row was returned), should be async</param>
+            <param name="parameters"></param>
+            <returns>A List of objects, always non-null</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteQueryProcOneAsync(System.String,System.Func{LD.Common.Database.IResult,System.Threading.Tasks.Task},System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns a single row, async
+            </summary>
+            <param name="procName"></param>
+            <param name="readerFunc">An action that will be called with a result (only called if a row was returned), should be async</param>
+            <param name="parameters"></param>
+            <returns>true if a row was found, false otherwise</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlConnection.ExecuteQueryProcOneAsync``1(System.String,System.Func{LD.Common.Database.IResult,System.Threading.Tasks.Task{``0}},System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Execute a stored procedure that returns a single row, async
+            </summary>
+            <typeparam name="T">type of the single value to return</typeparam>
+            <param name="procName"></param>
+            <param name="readerFunc">A function that extracts a single value from a result (only called if a row was returned), should be async</param>
+            <param name="parameters"></param>
+            <returns>A SqlSingleResult containing the return value from readerFunc, or default(T) if no results returned,
+            and a bool containing whether a row was returned or not</returns>
+        </member>
+        <member name="T:LD.Common.Database.ISqlTransactionProvider">
+            <summary>
+            Provides the boundaries of a transaction
+            
+            NOTE: Any Func or Action that is passed may be recalled if a transient error occurs (such as Deadlock)
+                  Be cautious about doing anything that cannot be undone inside a DB transaction.
+                  This can be disabled when registering the transaction factory
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.ExecuteTxn(System.Action{LD.Common.Database.ISqlConnection},System.Nullable{System.Int32})">
+            <summary>
+            Execute the Action within a new transaction
+            </summary>
+            <param name="action">action to be called with connection</param>
+            <param name="commandTimeout">timeout for sql commands (seconds), null for default</param>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.ExecuteTxn``1(System.Func{LD.Common.Database.ISqlConnection,``0},System.Nullable{System.Int32})">
+            <summary>
+            Execute the function within a new transaction
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func">action to be called with connection</param>
+            <param name="commandTimeout">timeout for sql commands (seconds), null for default</param>
+            <returns>the value returned from func</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.ExecuteRawTxn(System.Action{LD.Common.Database.IRawSqlConnection},System.Nullable{System.Int32})">
+            <summary>
+            Execute the Action within a new transaction, suitable for raw sql queries
+            </summary>
+            <param name="action">action to be called with connection</param>
+            <param name="commandTimeout">timeout for sql commands (seconds), null for default</param>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.ExecuteRawTxn``1(System.Func{LD.Common.Database.IRawSqlConnection,``0},System.Nullable{System.Int32})">
+            <summary>
+            Execute the function within a new transaction, suitable for raw sql queries
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func">action to be called with connection</param>
+            <param name="commandTimeout">timeout for sql commands (seconds), null for default</param>
+            <returns>the value returned from func</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.ExecuteTxnAsync(System.Func{LD.Common.Database.ISqlConnection,System.Threading.Tasks.Task},System.Nullable{System.Int32})">
+            <summary>
+            Execute the Action within a new transaction, async
+            </summary>
+            <param name="action">action to be called with connection, should be async</param>
+            <param name="commandTimeout">timeout for sql commands (seconds), null for default</param>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.ExecuteTxnAsync``1(System.Func{LD.Common.Database.ISqlConnection,System.Threading.Tasks.Task{``0}},System.Nullable{System.Int32})">
+            <summary>
+            Execute the function within a new transaction, async
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func">action to be called with connection, should be async</param>
+            <param name="commandTimeout">timeout for sql commands (seconds), null for default</param>
+            <returns>the T value returned from func</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.ExecuteRawTxnAsync(System.Func{LD.Common.Database.IRawSqlConnection,System.Threading.Tasks.Task},System.Nullable{System.Int32})">
+            <summary>
+            Execute the Action within a new transaction, suitable for raw sql queries, async
+            </summary>
+            <param name="action">action to be called with connection, should be async</param>
+            <param name="commandTimeout">timeout for sql commands (seconds), null for default</param>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.ExecuteRawTxnAsync``1(System.Func{LD.Common.Database.IRawSqlConnection,System.Threading.Tasks.Task{``0}},System.Nullable{System.Int32})">
+            <summary>
+            Execute the function within a new transaction, suitable for raw sql queries, async
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="func">action to be called with connection, should be async</param>
+            <param name="commandTimeout">timeout for sql commands (seconds), null for default</param>
+            <returns>the T value returned from func</returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.GetDeferred">
+            <summary>
+            Get a deferred sql connection
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.ExecuteDeferred(LD.Common.Database.IDeferredSqlConnection)">
+            <summary>
+            Shortcut method to execute all the deferred calls in a deferred connection
+            </summary>
+            <param name="deferredConn"></param>
+        </member>
+        <member name="M:LD.Common.Database.ISqlTransactionProvider.ExecuteDeferredAsync(LD.Common.Database.IDeferredSqlConnection)">
+            <summary>
+            Shortcut method to execute all the deferred calls in a deferred connection, async
+            </summary>
+            <param name="deferredConn"></param>
+        </member>
+        <member name="T:LD.Common.Database.SingleResult`1">
+            <summary>
+            Represents a single result that might or might not be present
+            (essentially Optional(T))
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:LD.Common.Database.SingleResult`1.Value">
+            <summary>
+            The value returned
+            </summary>
+        </member>
+        <member name="P:LD.Common.Database.SingleResult`1.RowReturned">
+            <summary>
+            True if the query returned a result
+            </summary>
+        </member>
+        <member name="T:LD.Common.Database.SqlConstants">
+            <summary>
+            Constants for DB Code
+            </summary>
+        </member>
+        <member name="F:LD.Common.Database.SqlConstants.DoNotTrimHeader">
+            <summary>
+            Put this in front of the parameter name to prevent auto-trimming
+            e.g.   new SqlParameter(SqlConstants.DoNotTrimHeader + "@ParamName", valueStr)
+            </summary>
+        </member>
+        <member name="F:LD.Common.Database.SqlConstants.NullableHeader">
+            <summary>
+            Put this in front of the parameter name to explicitly set a null value to DBNull.Value
+            e.g.   new SqlParameter(SqlConstants.NullableHeader + "@ParamName", valueStr)
+            </summary>
+        </member>
+        <member name="T:LD.Common.Database.SqlTransactionFactory">
+            <summary>
+            A factory for getting SQL connections
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.SqlTransactionFactory.#ctor(System.String,System.String,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="defaultName"></param>
+             <param name="defaultConnStr"></param>
+             <param name="defaultCommandTimeout">default timeout for sql commands in seconds</param>
+             <param name="retryCount">how many times to retry on transient failures</param>
+             <param name="retryIntervalMs">how often to retry on transient failures</param>
+             <param name="retryFastFirst">if true, 1st retry will be immediate</param>
+             <param name="disableTransientRetry">if true, the transaction will not retry on transient errors</param>
+        </member>
+        <member name="M:LD.Common.Database.SqlTransactionFactory.MapConnectionString(System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Map a connection name to a connection string for later retrieval from the factory
+            </summary>
+            <param name="name"></param>
+            <param name="connectionStr"></param>
+            <param name="commandTimeout"></param>
+            <param name="disableTransientRetry">if true, the transaction will not retry on transient errors</param>
+        </member>
+        <member name="M:LD.Common.Database.SqlTransactionFactory.MapDefaultConnectionString(System.String,System.String,System.Int32)">
+            <summary>
+            Map the default unnamed connection string for later retrieval from the factory
+            </summary>
+            <param name="name"></param>
+            <param name="connectionStr"></param>
+            <param name="commandTimeout"></param>
+        </member>
+        <member name="M:LD.Common.Database.SqlTransactionFactory.Get(System.String)">
+            <summary>
+            Get a transaction provider from the factory
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Database.SqlTransactionFactory.GetDefault">
+            <summary>
+            Get the default transaction provider from the factory
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:LD.Common.Database.SqlUtils">
+            <summary>
+            Utilities for DB Code
+            </summary>
+        </member>
+        <member name="M:LD.Common.Database.SqlUtils.IsTimeoutException(System.Data.SqlClient.SqlException)">
+            <summary>
+            Determine if the given exception was caused by timeout
+            </summary>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LD.Common.Database.SqlUtils.TimeSpanToMillis(System.Nullable{System.TimeSpan})">
+            <summary>
+            Convert a nullable timespan to integer milliseconds
+            </summary>
+            <param name="timespan"></param>
+            <returns>int milliseconds or null if timespan is null</returns>
+        </member>
+        <member name="M:LD.Common.Database.SqlUtils.MillisToTimeSpan(System.Nullable{System.Int32})">
+            <summary>
+            Convert a nullable integer milliseconds to timespan
+            </summary>
+            <param name="millis"></param>
+            <returns>timespan or null if millis is null</returns>
+        </member>
+    </members>
+</doc>

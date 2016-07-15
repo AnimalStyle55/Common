@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1217D0F-77F4-40F6-922C-6B37C1E52464}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LD.Common.Serialization.Net40</RootNamespace>
+    <AssemblyName>LD.Common.Serialization.Net40</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\LD.Common.Serialization\JsonUtil.cs">
+      <Link>JsonUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\LD.Common.Serialization\Serializers\JsonNetUnderscorePropertyNamesContractResolver.cs">
+      <Link>Serializers\JsonNetUnderscorePropertyNamesContractResolver.cs</Link>
+    </Compile>
+    <Compile Include="..\LD.Common.Serialization\Serializers\RestSharpJsonNetDeserializer.cs">
+      <Link>Serializers\RestSharpJsonNetDeserializer.cs</Link>
+    </Compile>
+    <Compile Include="..\LD.Common.Serialization\Serializers\RestSharpJsonNetSerializer.cs">
+      <Link>Serializers\RestSharpJsonNetSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\LD.Common.Serialization\Serializers\RestSharpStringSerializer.cs">
+      <Link>Serializers\RestSharpStringSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\LD.Common.Serialization\Serializers\RestSharpXmlDeserializer.cs">
+      <Link>Serializers\RestSharpXmlDeserializer.cs</Link>
+    </Compile>
+    <Compile Include="..\LD.Common.Serialization\Serializers\RestSharpXmlSerializer.cs">
+      <Link>Serializers\RestSharpXmlSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\LD.Common.Serialization\XmlUtil.cs">
+      <Link>XmlUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LD.Common.Serialization.Net40.nuspec" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LD.Common.Net40\LD.Common.Net40.csproj">
+      <Project>{61bbf914-5d92-4e3e-8119-c93decdde5b0}</Project>
+      <Name>LD.Common.Net40</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BasicObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <x>55</x>
+  <y>abc</y>
+  <z>1.25</z>
+  <v>Value2</v>
+</BasicObject>

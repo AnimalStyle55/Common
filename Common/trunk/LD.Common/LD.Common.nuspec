@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>LD.Common</id>
+    <version>$version$</version>
+    <title>LD.Common</title>
+    <authors>LDTS</authors>
+    <owners>LDTS</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>LDTS Common Utilities</description>
+    <releaseNotes>Top level common package</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>LDTS Common</tags>
+    <iconUrl>https://nugetgallery.blob.core.windows.net/icons/Nuget.Core.1.0.1120.104.png</iconUrl>
+  </metadata>
+</package>

@@ -1,0 +1,17 @@
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\data\BasicObject.xml
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\Tests.LD.Common.Serialization.dll
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\Tests.LD.Common.Serialization.pdb
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\LD.Common.Serialization.dll
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\Newtonsoft.Json.dll
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\nunit.framework.dll
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\RestSharp.dll
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\LD.Common.Serialization.pdb
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\LD.Common.Serialization.xml
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\Newtonsoft.Json.xml
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\nunit.framework.xml
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\bin\Debug\RestSharp.xml
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\obj\Debug\Tests.LD.Common.Serialization.csprojResolveAssemblyReference.cache
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\obj\Debug\Tests.LD.Common.Serialization.dll
+C:\Users\skerlagon\Desktop\TFS\Common\trunk\Tests\Tests.LD.Common.Serialization\obj\Debug\Tests.LD.Common.Serialization.pdb
