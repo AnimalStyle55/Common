@@ -4,7 +4,7 @@
     <id>Common.Database</id>
     <version>$version$</version>
     <title>Common.Database</title>
-    <authors></authors>
+    <authors>Me</authors>
     <owners></owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Common Database Framework</description>

@@ -4,7 +4,7 @@
     <id>Common.Logging.NLog</id>
     <version>$version$</version>
     <title>Common.Logging.NLog</title>
-    <authors></authors>
+    <authors>Me</authors>
     <owners></owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Logging with NLog</description>

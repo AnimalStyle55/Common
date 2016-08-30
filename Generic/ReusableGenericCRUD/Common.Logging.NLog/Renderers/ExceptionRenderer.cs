@@ -177,7 +177,7 @@ namespace Common.Logging.NLog.Renderers
                 return;
             }
 
-            if (frame.GetFileName().Contains("LD."))
+            if (frame.GetFileName().Contains(""))
             {
                 var fi = new FileInfo(frame.GetFileName());
                 filterDir(fi.Directory, builder);
@@ -188,14 +188,14 @@ namespace Common.Logging.NLog.Renderers
         }
 
         /// <summary>
-        /// do a post-order traversal to append the path of the file, stopping at the first "LD.Leads"
+        /// do a post-order traversal to append the path of the file, stopping at the first "Leads"
         /// so it doesn't log the full path that was on the build machine
         /// </summary>
         /// <param name="di"></param>
         /// <param name="sb"></param>
         private void filterDir(DirectoryInfo di, StringBuilder sb)
         {
-            if (di.Name.StartsWith("LD."))
+            if (di.Name.StartsWith(""))
             {
                 sb.Append(di.Name);
                 return;

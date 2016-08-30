@@ -4,7 +4,7 @@
     <id>Common.Logging.NLog.Net40</id>
     <version>$version$</version>
     <title>Common.Logging.NLog.Net40</title>
-    <authors></authors>
+    <authors>Me</authors>
     <owners></owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Common Logging NLog for .NET 4</description>

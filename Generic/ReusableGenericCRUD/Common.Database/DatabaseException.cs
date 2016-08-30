@@ -38,7 +38,7 @@ namespace Common.Database
         ExpectedRowsMismatch,
     }
 
-    /// <summary>Database Exception thrown by LDTS DB Code</summary>
+    /// <summary>Database Exception thrown by DB Code</summary>
     public class DatabaseException : Exception
     {
         /// <summary>

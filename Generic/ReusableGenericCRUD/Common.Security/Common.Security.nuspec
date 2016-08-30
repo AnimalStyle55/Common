@@ -4,7 +4,7 @@
     <id>Common.Security</id>
     <version>$version$</version>
     <title>Common.Security</title>
-    <authors></authors>
+    <authors>Me</authors>
     <owners></owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Security utilities</description>
