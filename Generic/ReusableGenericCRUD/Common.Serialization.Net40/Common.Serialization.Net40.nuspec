@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>LD.Common.Serialization.Net40</id>
+    <id>Common.Serialization.Net40</id>
     <version>$version$</version>
-    <title>LD.Common.Serialization.Net40</title>
-    <authors>LDTS</authors>
-    <owners>LDTS</owners>
+    <title>Common.Serialization.Net40</title>
+    <authors></authors>
+    <owners></owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>LDTS Object Serialization Net40</description>
+    <description>Object Serialization Net40</description>
     <releaseNotes>Json/XML/etc object serialization for various libraries (.NET 4) (RestSharp/Json.Net/etc)</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>LDTS Common Serialization Json XML Net40 .NET4</tags>
+    <tags>Common Serialization Json XML Net40 .NET4</tags>
     <iconUrl>https://nugetgallery.blob.core.windows.net/icons/Nuget.Core.1.0.1120.104.png</iconUrl>
   </metadata>
 </package>

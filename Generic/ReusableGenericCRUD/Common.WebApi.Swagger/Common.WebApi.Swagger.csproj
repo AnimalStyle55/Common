@@ -94,7 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="LD.Common.WebApi.Swagger.nuspec" />
+    <None Include="Common.WebApi.Swagger.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
