@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B1217D0F-77F4-40F6-922C-6B37C1E52464}</ProjectGuid>
+    <ProjectGuid>{731920B8-A712-44F9-B62D-7B8E9C2E32B7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.Serialization.Net40</RootNamespace>
-    <AssemblyName>Common.Serialization.Net40</AssemblyName>
+    <RootNamespace>Common.Logging.NLog.Net40</RootNamespace>
+    <AssemblyName>Common.Logging.NLog.Net40</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET40</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -30,17 +30,13 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET40</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
+    <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.3.2.0.0\lib\net40\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -53,29 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\LD.Common.Serialization\JsonUtil.cs">
-      <Link>JsonUtil.cs</Link>
+    <Compile Include="..\LD.Common.Logging.NLog\Renderers\AsyncCtxRenderer.cs">
+      <Link>Renderers\AsyncCtxRenderer.cs</Link>
     </Compile>
-    <Compile Include="..\LD.Common.Serialization\Serializers\JsonNetUnderscorePropertyNamesContractResolver.cs">
-      <Link>Serializers\JsonNetUnderscorePropertyNamesContractResolver.cs</Link>
+    <Compile Include="..\LD.Common.Logging.NLog\Renderers\ExceptionRenderer.cs">
+      <Link>Renderers\ExceptionRenderer.cs</Link>
     </Compile>
-    <Compile Include="..\LD.Common.Serialization\Serializers\RestSharpJsonNetDeserializer.cs">
-      <Link>Serializers\RestSharpJsonNetDeserializer.cs</Link>
+    <Compile Include="..\LD.Common.Logging.NLog\Renderers\FilteredMessageRenderer.cs">
+      <Link>Renderers\FilteredMessageRenderer.cs</Link>
     </Compile>
-    <Compile Include="..\LD.Common.Serialization\Serializers\RestSharpJsonNetSerializer.cs">
-      <Link>Serializers\RestSharpJsonNetSerializer.cs</Link>
+    <Compile Include="..\LD.Common.Logging.NLog\Renderers\LogFileNameRenderer.cs">
+      <Link>Renderers\LogFileNameRenderer.cs</Link>
     </Compile>
-    <Compile Include="..\LD.Common.Serialization\Serializers\RestSharpStringSerializer.cs">
-      <Link>Serializers\RestSharpStringSerializer.cs</Link>
-    </Compile>
-    <Compile Include="..\LD.Common.Serialization\Serializers\RestSharpXmlDeserializer.cs">
-      <Link>Serializers\RestSharpXmlDeserializer.cs</Link>
-    </Compile>
-    <Compile Include="..\LD.Common.Serialization\Serializers\RestSharpXmlSerializer.cs">
-      <Link>Serializers\RestSharpXmlSerializer.cs</Link>
-    </Compile>
-    <Compile Include="..\LD.Common.Serialization\XmlUtil.cs">
-      <Link>XmlUtil.cs</Link>
+    <Compile Include="..\LD.Common.Logging.NLog\Renderers\TruncateLeftRenderer.cs">
+      <Link>Renderers\TruncateLeftRenderer.cs</Link>
     </Compile>
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
@@ -83,14 +70,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Common.Serialization.Net40.nuspec" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LD.Common.Net40\Common.Net40.csproj">
+    <ProjectReference Include="..\Common.Net40\Common.Net40.csproj">
       <Project>{61bbf914-5d92-4e3e-8119-c93decdde5b0}</Project>
       <Name>Common.Net40</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

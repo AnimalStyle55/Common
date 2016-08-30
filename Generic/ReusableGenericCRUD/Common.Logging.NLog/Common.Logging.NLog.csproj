@@ -4,39 +4,43 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{731920B8-A712-44F9-B62D-7B8E9C2E32B7}</ProjectGuid>
+    <ProjectGuid>{6097DD5D-49FB-4077-9C65-43D2FB09DB8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.Logging.NLog.Net40</RootNamespace>
-    <AssemblyName>Common.Logging.NLog.Net40</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>Common.Logging.NLog</RootNamespace>
+    <AssemblyName>Common.Logging.NLog</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET40</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Debug\Common.Logging.NLog.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NET40</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\Common.Logging.NLog.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.3.2.0.0\lib\net40\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.3.5\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -49,30 +53,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\LD.Common.Logging.NLog\Renderers\AsyncCtxRenderer.cs">
-      <Link>Renderers\AsyncCtxRenderer.cs</Link>
-    </Compile>
-    <Compile Include="..\LD.Common.Logging.NLog\Renderers\ExceptionRenderer.cs">
-      <Link>Renderers\ExceptionRenderer.cs</Link>
-    </Compile>
-    <Compile Include="..\LD.Common.Logging.NLog\Renderers\FilteredMessageRenderer.cs">
-      <Link>Renderers\FilteredMessageRenderer.cs</Link>
-    </Compile>
-    <Compile Include="..\LD.Common.Logging.NLog\Renderers\LogFileNameRenderer.cs">
-      <Link>Renderers\LogFileNameRenderer.cs</Link>
-    </Compile>
-    <Compile Include="..\LD.Common.Logging.NLog\Renderers\TruncateLeftRenderer.cs">
-      <Link>Renderers\TruncateLeftRenderer.cs</Link>
-    </Compile>
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\AsyncCtxRenderer.cs" />
+    <Compile Include="Renderers\ExceptionRenderer.cs" />
+    <Compile Include="Renderers\FilteredMessageRenderer.cs" />
+    <Compile Include="Renderers\LogFileNameRenderer.cs" />
+    <Compile Include="Renderers\TruncateLeftRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LD.Common.Net40\Common.Net40.csproj">
-      <Project>{61bbf914-5d92-4e3e-8119-c93decdde5b0}</Project>
-      <Name>Common.Net40</Name>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{653afe50-0af4-4418-b4aa-56929f35583a}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -4,13 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1854337B-66A5-4069-8F9A-8AFCE213611C}</ProjectGuid>
+    <ProjectGuid>{77A54DB5-8688-4615-B185-EE7CB1B53D84}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common.ReusableGenericCRUD</RootNamespace>
-    <AssemblyName>Common.ReusableGenericCRUD</AssemblyName>
+    <RootNamespace>Common.Database</RootNamespace>
+    <AssemblyName>Common.Database</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +25,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Common.Database.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +36,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Common.Database.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
@@ -38,20 +48,20 @@
       <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="CuttingEdge.Conditions, Version=1.2.0.11174, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\CuttingEdge.Conditions.1.2.0.0\lib\NET35\CuttingEdge.Conditions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.1\lib\NET45\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,48 +70,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ApiControllerBase.cs" />
-    <Compile Include="Controllers\ApiControllerWithCRUD.cs" />
-    <Compile Include="Controllers\APIControllerWithCRUDAndParentRelationShip.cs" />
-    <Compile Include="Controllers\APIControllerWithCRUDDirectCreate.cs" />
-    <Compile Include="DAO\CompositeKeyDAO.cs" />
-    <Compile Include="DAO\IParentKeyed.cs" />
-    <Compile Include="Extensions\Extensions.cs" />
-    <Compile Include="ICompositeKeyed.cs" />
-    <Compile Include="ICompositeKeyedWithOrder.cs" />
-    <Compile Include="IKeyed.cs" />
-    <Compile Include="Repository\CompositeKeyRepository.cs" />
-    <Compile Include="DAO\CompositeKeyWithOrderDAO.cs" />
-    <Compile Include="Repository\CompositeKeyWithOrderRepository.cs" />
-    <Compile Include="DAO\DAO.cs" />
-    <Compile Include="DAO\ICompositeKeyDAO.cs" />
-    <Compile Include="DAO\ICompositeKeyWithOrderDAO.cs" />
-    <Compile Include="DAO\IDAO.cs" />
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="DatabaseException.cs" />
+    <Compile Include="IDatabaseConnectionProvider.cs" />
+    <Compile Include="IDeferredSqlConnection.cs" />
+    <Compile Include="Impl\DatabaseConnectionProvider.cs" />
+    <Compile Include="Impl\DeferredSqlConnection.cs" />
+    <Compile Include="Impl\LoanDepotSqlConnection.cs" />
+    <Compile Include="Impl\LoanDepotSqlTransaction.cs" />
+    <Compile Include="Impl\LoanDepotSqlTransactionProvider.cs" />
+    <Compile Include="Impl\ResultSet.cs" />
+    <Compile Include="Impl\ResultSetAsync.cs" />
+    <Compile Include="Impl\SqlParameterProcessor.cs" />
+    <Compile Include="Impl\StoredProcLogger.cs" />
+    <Compile Include="IRawSqlConnection.cs" />
+    <Compile Include="IResult.cs" />
+    <Compile Include="IResultSet.cs" />
+    <Compile Include="ISqlConnection.cs" />
+    <Compile Include="ISqlTransactionProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\ICompositeKeyRepository.cs" />
-    <Compile Include="Repository\ICompositeKeyRepositoryWithOrder.cs" />
-    <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="Repository\Repository.cs" />
+    <Compile Include="SingleResult.cs" />
+    <Compile Include="SqlConstants.cs" />
+    <Compile Include="SqlTransactionFactory.cs" />
+    <Compile Include="SqlUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common.Database\Common.Database.csproj">
-      <Project>{77a54db5-8688-4615-b185-ee7cb1b53d84}</Project>
-      <Name>Common.Database</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common.WebApi\Common.WebApi.csproj">
-      <Project>{86558f57-ff82-4cca-a696-c7905b72df5c}</Project>
-      <Name>Common.WebApi</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{653afe50-0af4-4418-b4aa-56929f35583a}</Project>
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
